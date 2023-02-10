@@ -57,7 +57,7 @@ static char	**remove_split(char **split, size_t i)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c, char *placeholder)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	size_t	size;
@@ -70,7 +70,6 @@ char	**ft_split(char const *s, char c, char *placeholder)
 	split = malloc((size + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
-	split[i++] = placeholder;
 	while (*s && i < size)
 	{
 		while (*s == c)
