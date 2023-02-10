@@ -20,6 +20,7 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdbool.h>
+# include <fcntl.h>
 # include "./libft/libft.h"
 
 // DEFINE
@@ -41,5 +42,7 @@ void	wait_for_child(void);
 void	create_pipe(int *pipe_fd);
 void	close_pipes(int *pipe_fd);
 
+// FUNCTION FOR EXECUTING A COMMAND ON A INFILE AND WRITE TO OUTFILE
+int		cmd_to_outfile(int argc, char *argv[], char *envp[]);
 
 #endif

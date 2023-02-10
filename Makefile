@@ -29,7 +29,8 @@ SRC		:= \
 		src/pipex/child_functions/create_child.c \
 		src/pipex/child_functions/wait_for_child.c \
 		src/pipex/pipe_functions/create_pipe.c \
-		src/pipex/pipe_functions/close_pipes.c
+		src/pipex/pipe_functions/close_pipes.c \
+		src/pipex/cmd_to_outfile.c
 
 OBJ		:= $(SRC:.c=.o)
 

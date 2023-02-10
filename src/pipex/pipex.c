@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   pipex.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/02/10 16:41:47 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/02/10 16:41:49 by lvan-bus      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 static void	execute_first_child(int *a, int *pipe_fd, char *mes)
@@ -12,13 +24,13 @@ static void	execute_second_child(int *a, int *pipe_fd, char *mes)
 {
 	read(pipe_fd[0], a, sizeof(*a));
 	close_pipes(pipe_fd);
-	*a *= 2;
+	*a *= 3;
 	ft_printf("'a' at the end of the %s child process: %i\n", mes, *a);
 }
 
 void	pipex(int a)
 {
-	int 	pipe_fd[2];
+	int		pipe_fd[2];
 	pid_t	pid[2];
 
 	create_pipe(pipe_fd);
