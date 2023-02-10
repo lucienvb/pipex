@@ -25,7 +25,11 @@ SRC		:= \
 		src/main.c \
 		src/error_handling/perror_and_exit.c \
 		src/error_handling/p_input_parsing.c \
-		src/pipex/pipex.c
+		src/pipex/pipex.c \
+		src/pipex/child_functions/create_child.c \
+		src/pipex/child_functions/wait_for_child.c \
+		src/pipex/pipe_functions/create_pipe.c \
+		src/pipex/pipe_functions/close_pipes.c
 
 OBJ		:= $(SRC:.c=.o)
 

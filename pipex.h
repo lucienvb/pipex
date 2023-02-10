@@ -23,7 +23,8 @@
 # include "./libft/libft.h"
 
 // DEFINE
-
+# define FIRST "first"
+# define SECOND "second"
 
 // STRUCTURES
 
@@ -31,6 +32,14 @@
 bool	p_input_parsing(int argc, char **argv);
 void	perror_and_exit(char *str);
 void	pipex(int a);
+
+// CHILD FUNCTIONS
+pid_t	create_child(pid_t pid);
+void	wait_for_child(void);
+
+// PIPE FUNCTIONS
+void	create_pipe(int *pipe_fd);
+void	close_pipes(int *pipe_fd);
 
 
 #endif
