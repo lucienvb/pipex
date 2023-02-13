@@ -14,10 +14,10 @@
 
 static char	**join_three(char *s1, char *s2, char *s3)
 {
-	char		**ret;
+	char	**ret;
 
-	if (!s1 || !s2 || !s3)
-		return (NULL);
+//	if (!s1 || !s2 || !s3)
+//		return (NULL);
 	ret = malloc(4 * sizeof(char *));
 	if (!ret)
 		return (NULL);
@@ -28,23 +28,25 @@ static char	**join_three(char *s1, char *s2, char *s3)
 	return (ret);
 }
 
-int	cmd_to_outfile(int argc, char **argv, char **envp)
+int	cmd_to_outfile(int argc, char **argv, t_pipe *data)
 {
 	char	**file_tmp;
-	char	*file;
 	int		fd;
 
 	(void)argc;
-	(void)envp;
 	fd = open(argv[3], O_CREAT | O_TRUNC | O_WRONLY);
 	if (fd == -1)
 		perror_and_exit("open");
 	if (dup2(fd, STDOUT_FILENO) == -1)
 		perror_and_exit("dup2");
+
 	file_tmp = ft_split(argv[2], ' ');
-	file = ft_strjoin("/bin/", file_tmp[0]);
+	data->p_index = access_to_index(data->path_list, file_tmp[0]);
+	data->path = strjoin_three(data->path_list[data->p_index], "/", file_tmp[0]);
+//	ft_printf("p_index: %i and path: %s\n", data->p_index, data->path);
+//	ft_printf("file_tmp[0]: %s\n", file_tmp[0]);
 	file_tmp = join_three(file_tmp[0], file_tmp[1], argv[1]);
-	if (execve(file, file_tmp, NULL) == -1)
+	if (execve(data->path, file_tmp, NULL) == -1)
 	{
 		perror("execve");
 		exit(EXIT_FAILURE);

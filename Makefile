@@ -25,14 +25,15 @@ SRC		:= \
 		src/main.c \
 		src/error_handling/perror_and_exit.c \
 		src/error_handling/p_input_parsing.c \
+		src/initialize/initialize.c \
 		src/pipex/pipex.c \
-		src/pipex/child_functions/create_child.c \
-		src/pipex/child_functions/wait_for_child.c \
-		src/pipex/pipe_functions/create_pipe.c \
-		src/pipex/pipe_functions/close_pipes.c \
+		src/pipex/child/create_child.c \
+		src/pipex/child/wait_for_child.c \
+		src/pipex/pipe/create_pipe.c \
+		src/pipex/pipe/close_pipes.c \
 		src/pipex/cmd_to_outfile.c \
-		src/pipex/path_functions/split_path.c \
-		src/pipex/path_functions/access_to_index.c
+		src/pipex/path/split_path.c \
+		src/pipex/path/access_to_index.c
 
 OBJ		:= $(SRC:.c=.o)
 

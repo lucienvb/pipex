@@ -17,20 +17,13 @@
 // file of choice.
 int	main(int argc, char **argv, char **envp)
 {
-	char	**path;
-	int		i;
-//	cmd_to_outfile(argc, argv, envp);
-	(void)argv;
-	(void)argc;
-	path = split_path(envp);
-	if (!path)
-		return (0);
-	i = access_to_index(path, "ls");
-//	i = 0;
-//	while (path[i])
+	t_pipe	data;
 
-//	if (i > -1)
-		ft_printf("%i\n", i);
+	(void)envp;
+	if (!initialize(&data, argc, argv, envp))
+		return (0);
+//	ft_printf("%i\n", data.p_index);
+	cmd_to_outfile(argc, argv, &data);
 //	system("leaks pipex");
 	return (0);
 }

@@ -1,6 +1,6 @@
 #include "pipex.h"
 
-static char	*strjoin_three(char *s1, char *s2, char *s3)
+char	*strjoin_three(char *s1, char *s2, char *s3)
 {
 	char *join_three;
 
@@ -20,7 +20,7 @@ int	access_to_index(char **path, char *system_call)
 		syst_call_to_path = strjoin_three(path[i], "/", system_call);
 		if (access(syst_call_to_path, F_OK) == 0 && access(syst_call_to_path, X_OK) == 0)
 			return (i);
-		ft_printf("syst_call_to_path: %s\n", syst_call_to_path);
+//		ft_printf("syst_call_to_path: %s\n", syst_call_to_path);
 		i++;
 	}
 	return (-1);
