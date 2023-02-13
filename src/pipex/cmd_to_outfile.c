@@ -16,6 +16,8 @@ static char	**join_three(char *s1, char *s2, char *s3)
 {
 	char		**ret;
 
+	if (!s1 || !s2 || !s3)
+		return (NULL);
 	ret = malloc(4 * sizeof(char *));
 	if (!ret)
 		return (NULL);

@@ -25,9 +25,12 @@ int	main(int argc, char **argv, char **envp)
 	path = split_path(envp);
 	if (!path)
 		return (0);
-	i = 0;
-	while (path[i])
-		ft_printf("%s\n", path[i++]);
+	i = access_to_index(path, "ls");
+//	i = 0;
+//	while (path[i])
+
+//	if (i > -1)
+		ft_printf("%i\n", i);
 //	system("leaks pipex");
 	return (0);
 }
@@ -37,14 +40,14 @@ int	main(int argc, char **argv, char **envp)
 // The first child process is multiplying input 'a' (integer)
 // with 2, the second child process is multiplying the result
 // of the first child process with 3.
-//int	main(int argc, char **argv, char **envp)
-//{
-//	int 	a;
-//
-//	(void)envp;
-//	if (!p_input_parsing(argc, argv))
-//		return (0);
-//	a = ft_atoi(argv[1]);
-//	pipex(a);
-//	return (0);
-//}
+/*int	main(int argc, char **argv, char **envp)
+{
+	int 	a;
+
+	(void)envp;
+	if (!p_input_parsing(argc, argv))
+		return (0);
+	a = ft_atoi(argv[1]);
+	pipex(a);
+	return (0);
+}*/

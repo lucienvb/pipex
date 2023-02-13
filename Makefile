@@ -30,7 +30,9 @@ SRC		:= \
 		src/pipex/child_functions/wait_for_child.c \
 		src/pipex/pipe_functions/create_pipe.c \
 		src/pipex/pipe_functions/close_pipes.c \
-		src/pipex/cmd_to_outfile.c
+		src/pipex/cmd_to_outfile.c \
+		src/pipex/path_functions/split_path.c \
+		src/pipex/path_functions/access_to_index.c
 
 OBJ		:= $(SRC:.c=.o)
 

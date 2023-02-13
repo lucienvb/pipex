@@ -28,6 +28,10 @@
 # define SECOND "second"
 
 // STRUCTURES
+//typedef struct s_pipe
+//{
+//	char **path;
+//}	t_pipe;
 
 // FUNCTIONS
 bool	p_input_parsing(int argc, char **argv);
@@ -44,5 +48,9 @@ void	close_pipes(int *pipe_fd);
 
 // FUNCTION FOR EXECUTING A COMMAND ON A INFILE AND WRITE TO OUTFILE
 int		cmd_to_outfile(int argc, char *argv[], char *envp[]);
+
+// PATH RELATED FUNCTIONS
+char	**split_path(char **envp);
+int		access_to_index(char **path, char *system_call);
 
 #endif
