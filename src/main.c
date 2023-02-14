@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)envp;
 	if (!initialize(&data, argc, argv, envp))
 		return (0);
-//	ft_printf("%i\n", data.p_index);
+//	pipex(argc, argv, &data);
 	cmd_to_outfile(argc, argv, &data);
 //	system("leaks pipex");
 	return (0);

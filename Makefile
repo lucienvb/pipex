@@ -58,6 +58,8 @@ fclean: clean
 		rm -f $(NAME)
 		$(MAKE) -C ./libft fclean
 
+comp: all clean
+
 re: fclean all
 
 #=======================================#

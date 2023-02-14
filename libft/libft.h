@@ -28,6 +28,10 @@ typedef struct node
 	struct node		*next;
 }					t_node;
 
+// ARRAY
+size_t	ft_array_len(char **array);
+void	ft_print_list(char **list);
+
 // ASCII
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -69,7 +73,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 
 // PUT
-void	ft_print_list(char **list);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);

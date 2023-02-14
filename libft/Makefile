@@ -21,6 +21,8 @@ IFLAG		?= -I.
 #LDFLAGS	?= -fsanitize=address -g
 
 SRC_LIBFT	:= \
+	array/ft_array_len.c \
+	array/ft_print_array.c \
 	ascii/ft_isalnum.c \
 	ascii/ft_isalpha.c \
 	ascii/ft_isascii.c \
@@ -51,7 +53,6 @@ SRC_LIBFT	:= \
 	mem/ft_memcpy.c \
 	mem/ft_memmove.c \
 	mem/ft_memset.c \
-	put/ft_print_list.c \
 	put/ft_putchar_fd.c \
 	put/ft_putendl_fd.c \
 	put/ft_putnbr_fd.c \
