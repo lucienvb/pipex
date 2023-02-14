@@ -39,7 +39,10 @@ static char	**get_new_argv(char *infile, char **argv)
 //
 static char	**init_pipe_data(t_pipe *data, char **new_argv)
 {
-	new_argv = ft_split(data->argv[2], ' ');
+	int i;
+
+	i = data->cmd_index;
+	new_argv = ft_split(data->argv[i], ' ');
 	data->p_index = access_to_index(data->path_list, new_argv[0]);
 	data->path = strjoin_three(data->path_list[data->p_index], "/", new_argv[0]);
 	new_argv = get_new_argv(data->argv[1], new_argv);

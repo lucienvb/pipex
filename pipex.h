@@ -31,7 +31,7 @@
 typedef struct s_pipe
 {
 	int 	end;
-	int 	argc;
+	int 	cmd_index;
 	char 	**argv;
 	char	**path_list;
 	char 	*path;
