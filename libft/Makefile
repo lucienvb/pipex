@@ -17,6 +17,7 @@
 NAME 		:= libft.a
 CC			:= cc
 CFLAGS 		?= -Wall -Wextra -Werror
+IFLAG		?= -I.
 #LDFLAGS	?= -fsanitize=address -g
 
 SRC_LIBFT	:= \
@@ -50,6 +51,7 @@ SRC_LIBFT	:= \
 	mem/ft_memcpy.c \
 	mem/ft_memmove.c \
 	mem/ft_memset.c \
+	put/ft_print_list.c \
 	put/ft_putchar_fd.c \
 	put/ft_putendl_fd.c \
 	put/ft_putnbr_fd.c \
@@ -89,7 +91,7 @@ $(NAME): $(OBJ)
 		ar -cr $(NAME) $(OBJ)
 
 %.o: %.c
-		$(CC) -c $(CFLAGS) -o $@ $^
+		$(CC) -c $(CFLAGS) $(IFLAG) -o $@ $^
 
 clean:
 		rm -f $(OBJ)
