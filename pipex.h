@@ -30,8 +30,9 @@
 // STRUCTURES
 typedef struct s_pipe
 {
-//	int 	argc;
-//	char 	**argv;
+	int 	end;
+	int 	argc;
+	char 	**argv;
 	char	**path_list;
 	char 	*path;
 	int 	p_index;
@@ -54,7 +55,7 @@ void	create_pipe(int *pipe_fd);
 void	close_pipes(int *pipe_fd);
 
 // FUNCTION FOR EXECUTING A COMMAND ON A INFILE AND WRITE TO OUTFILE
-int		cmd_to_outfile(int argc, char *argv[], t_pipe *data);
+int		cmd_to_outfile(t_pipe *data);
 
 // PATH RELATED FUNCTIONS
 char	**split_path(char **envp);

@@ -36,21 +36,38 @@ static char	**get_new_argv(char *infile, char **argv)
 	return (new_argv);
 }
 
-int	cmd_to_outfile(int argc, char **argv, t_pipe *data)
+//
+static char	**init_pipe_data(t_pipe *data, char **new_argv)
+{
+	new_argv = ft_split(data->argv[2], ' ');
+	data->p_index = access_to_index(data->path_list, new_argv[0]);
+	data->path = strjoin_three(data->path_list[data->p_index], "/", new_argv[0]);
+	new_argv = get_new_argv(data->argv[1], new_argv);
+	return (new_argv);
+}
+
+// opens a path (argv[3]) to write to with the dup2 function
+// the path is in this case the outfile
+static void	init_to_outfile(int *fd, t_pipe *data)
+{
+	int i;
+
+	i = data->end;
+	*fd = open(data->argv[i], O_CREAT | O_TRUNC | O_WRONLY);
+	if (*fd == -1)
+		perror_and_exit("open");
+	if (dup2(*fd, STDOUT_FILENO) == -1)
+		perror_and_exit("dup2");
+}
+
+int	cmd_to_outfile(t_pipe *data)
 {
 	char	**new_argv;
 	int		fd;
 
-	(void)argc;
-	fd = open(argv[3], O_CREAT | O_TRUNC | O_WRONLY);
-	if (fd == -1)
-		perror_and_exit("open");
-	if (dup2(fd, STDOUT_FILENO) == -1)
-		perror_and_exit("dup2");
-	new_argv = ft_split(argv[2], ' ');
-	data->p_index = access_to_index(data->path_list, new_argv[0]);
-	data->path = strjoin_three(data->path_list[data->p_index], "/", new_argv[0]);
-	new_argv = get_new_argv(argv[1], new_argv);
+	init_to_outfile(&fd, data);
+	new_argv = NULL;
+	new_argv = init_pipe_data(data, new_argv);
 	if (execve(data->path, new_argv, NULL) == -1)
 	{
 		perror("execve");
