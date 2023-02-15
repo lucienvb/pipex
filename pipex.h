@@ -41,7 +41,7 @@ typedef struct s_pipe
 // FUNCTIONS
 bool	p_input_parsing(int argc, char **argv);
 void	perror_and_exit(char *str);
-void	pipex(int a);
+void	pipex(t_pipe *data);
 
 // CHILD FUNCTIONS
 pid_t	create_child(pid_t pid);
@@ -56,6 +56,7 @@ void	close_pipes(int *pipe_fd);
 
 // FUNCTION FOR EXECUTING A COMMAND ON A INFILE AND WRITE TO OUTFILE
 int		cmd_to_outfile(t_pipe *data);
+int		cmd_to_pipe(t_pipe *data, int *pipe_fd);
 
 // PATH RELATED FUNCTIONS
 char	**split_path(char **envp);

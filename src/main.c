@@ -21,8 +21,8 @@ int	main(int argc, char **argv, char **envp)
 
 	if (!initialize(&data, argc, argv, envp))
 		return (0);
-//	pipex(argc, argv, &data);
-	cmd_to_outfile(&data);
+	pipex(&data);
+//	cmd_to_outfile(&data);
 //	system("leaks pipex");
 	return (0);
 }

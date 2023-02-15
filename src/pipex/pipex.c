@@ -12,23 +12,28 @@
 
 #include "pipex.h"
 
-static void	execute_first_child(int *a, int *pipe_fd, char *mes)
+//static void	execute_first_child(int *a, int *pipe_fd, char *mes)
+static void	execute_first_child(t_pipe *data, int *pipe_fd)
 {
-	*a *= 2;
-	write(pipe_fd[1], a, sizeof(*a));
+	cmd_to_pipe(data, pipe_fd);
 	close_pipes(pipe_fd);
-	ft_printf("'a' at the end of the %s child process: %i\n", mes, *a);
+	ft_printf("first child process\n");
 }
 
-static void	execute_second_child(int *a, int *pipe_fd, char *mes)
+static void	execute_second_child(t_pipe *data, int *pipe_fd)
 {
-	read(pipe_fd[0], a, sizeof(*a));
+	char	buf[999];
+	int 	bytes_read;
+
+	(void)data;
+	bytes_read = read(pipe_fd[0], buf, 999);
+	buf[bytes_read] = '\0';
 	close_pipes(pipe_fd);
-	*a *= 3;
-	ft_printf("'a' at the end of the %s child process: %i\n", mes, *a);
+//	*a *= 3;
+	ft_printf("buf:\n%s\n", buf);
 }
 
-void	pipex(int a)
+void	pipex(t_pipe *data)
 {
 	int		pipe_fd[2];
 	pid_t	pid[2];
@@ -36,12 +41,12 @@ void	pipex(int a)
 	create_pipe(pipe_fd);
 	pid[0] = create_child(pid[0]);
 	if (pid[0] == 0)
-		execute_first_child(&a, pipe_fd, FIRST);
+		execute_first_child(data, pipe_fd);
 	else
 	{
 		pid[1] = create_child(pid[1]);
 		if (pid[1] == 0)
-			execute_second_child(&a, pipe_fd, SECOND);
+			execute_second_child(data, pipe_fd);
 		else
 		{
 			close_pipes(pipe_fd);

@@ -30,7 +30,7 @@ typedef struct node
 
 // ARRAY
 size_t	ft_array_len(char **array);
-void	ft_print_list(char **list);
+void	ft_print_array(char **list);
 
 // ASCII
 int		ft_isalnum(int c);

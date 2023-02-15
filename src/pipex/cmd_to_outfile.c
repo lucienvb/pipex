@@ -36,7 +36,10 @@ static char	**get_new_argv(char *infile, char **argv)
 	return (new_argv);
 }
 
-//
+// creates path: path to the called command
+// creates new_argv: array with 1) the command
+// 2) the flags 3) the infile
+// need to take a look at the perror_and_exit message
 static char	**init_pipe_data(t_pipe *data, char **new_argv)
 {
 	int i;
@@ -44,6 +47,8 @@ static char	**init_pipe_data(t_pipe *data, char **new_argv)
 	i = data->cmd_index;
 	new_argv = ft_split(data->argv[i], ' ');
 	data->p_index = access_to_index(data->path_list, new_argv[0]);
+	if (data->p_index == -1)
+		perror_and_exit("command not found");
 	data->path = strjoin_three(data->path_list[data->p_index], "/", new_argv[0]);
 	new_argv = get_new_argv(data->argv[1], new_argv);
 	return (new_argv);
@@ -63,6 +68,24 @@ static void	init_to_outfile(int *fd, t_pipe *data)
 		perror_and_exit("dup2");
 }
 
+static void	init_to_pipe(int *pipe_fd)
+{
+	if (dup2(pipe_fd[1], STDOUT_FILENO) == -1)
+		perror_and_exit("dup2");
+}
+
+int	cmd_to_pipe(t_pipe *data, int *pipe_fd)
+{
+	char	**new_argv;
+
+	init_to_pipe(pipe_fd);
+	new_argv = NULL;
+	new_argv = init_pipe_data(data, new_argv);
+	if (execve(data->path, new_argv, NULL) == -1)
+		perror_and_exit("execve");
+	return (0);
+}
+
 int	cmd_to_outfile(t_pipe *data)
 {
 	char	**new_argv;
@@ -71,10 +94,9 @@ int	cmd_to_outfile(t_pipe *data)
 	init_to_outfile(&fd, data);
 	new_argv = NULL;
 	new_argv = init_pipe_data(data, new_argv);
+//	ft_printf("path: %s\n", data->path);
+//	ft_print_array(new_argv);
 	if (execve(data->path, new_argv, NULL) == -1)
-	{
-		perror("execve");
-		exit(EXIT_FAILURE);
-	}
+		perror_and_exit("execve");
 	return (0);
 }
