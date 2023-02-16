@@ -25,6 +25,7 @@
 
 // DEFINE
 # define FIRST 2
+# define FD_SIZE 2
 
 // STRUCTURES
 typedef struct s_pipe

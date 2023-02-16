@@ -31,8 +31,9 @@ static void	execute_last_child(t_pipe *data, int *pipe_fd)
 void	pipex(t_pipe *data)
 {
 	int		pipe_fd[2];
-	pid_t	pid[2];
+	pid_t	pid[FD_SIZE];
 
+	ft_bzero(pid, sizeof(pid_t) * FD_SIZE);
 	create_pipe(pipe_fd);
 	pid[0] = create_child(pid[0]);
 	if (pid[0] == 0)
