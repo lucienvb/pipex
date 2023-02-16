@@ -16,22 +16,23 @@
 
 NAME	:= pipex
 CC		:= cc
-CFLAGS	?= -Wall -Wextra -Werror
-#LDFLAGS	?= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -o3 -march=native
-IFLAG	?= -I.
-SFLAG	?= -fsanitize=address -g
+C_FLAGS	?= -Wall -Wextra -Werror
+I_FLAG	?= -I.
+S_FLAG	?= -fsanitize=address -g
 
 SRC		:= \
 		src/main.c \
 		src/error_handling/perror_and_exit.c \
 		src/error_handling/p_input_parsing.c \
 		src/initialize/initialize.c \
+		src/pipex/execute/execute_cmd_and_write.c \
+		src/pipex/execute/init_in_and_outfile.c \
+		src/pipex/execute/init_path_and_argv.c \
 		src/pipex/pipex.c \
 		src/pipex/child/create_child.c \
 		src/pipex/child/wait_for_child.c \
 		src/pipex/pipe/create_pipe.c \
 		src/pipex/pipe/close_pipes.c \
-		src/pipex/cmd_to_outfile.c \
 		src/pipex/path/split_path.c \
 		src/pipex/path/access_to_index.c
 
@@ -45,10 +46,10 @@ all:	$(NAME)
 
 $(NAME): $(OBJ)
 		$(MAKE) -C ./libft
-		$(CC) $(LDFLAGS) $(IFLAG) $(SFLAG) $^ ./libft/libft.a -o $(NAME)
+		$(CC) $(I_FLAG) $(S_FLAG) $^ ./libft/libft.a -o $(NAME)
 
 %.o: %.c
-		$(CC) -c $(CFLAGS) $(IFLAG) -o $@ $^
+		$(CC) -c $(C_FLAGS) $(I_FLAG) -o $@ $^
 
 clean:
 		rm -f $(OBJ)
@@ -66,10 +67,11 @@ re: fclean all
 #========	  UNIT TESTING		========#
 #=======================================#
 
-#LIST_TEST :=
+LIST_TEST := \
+		src/error_handling/p_input_parsing.c
 
 test: $(OBJ)
-		$(CC) $(CFLAGS) $(LDFLAGS) UnityExample.c $(LIST_TEST) unity/libunity.a ./libft/libft.a -o unittest
+		$(CC) $(C_FLAGS) UnityExample.c $(LIST_TEST) unity/libunity.a ./libft/libft.a -o unittest
 		@ ./unittest
 
 .PHONY: all clean fclean re

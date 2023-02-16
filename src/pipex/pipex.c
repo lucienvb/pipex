@@ -12,23 +12,22 @@
 
 #include "pipex.h"
 
-//static void	execute_first_child(int *a, int *pipe_fd, char *mes)
 static void	execute_first_child(t_pipe *data, int *pipe_fd)
 {
-	ft_printf("first child process:\n");
 	close(pipe_fd[0]);
-	cmd_to_pipe(data, pipe_fd);
-//	close_pipes(pipe_fd);
+	execute_cmd_and_write(data, pipe_fd);
+	close(pipe_fd[1]);
 }
 
 static void	execute_second_child(t_pipe *data, int *pipe_fd)
 {
-	ft_printf("second child process:\n");
 	close(pipe_fd[1]);
-	cmd_to_outfile(data, pipe_fd);
-//	close_pipes(pipe_fd);
+	execute_cmd_and_write(data, pipe_fd);
+	close(pipe_fd[0]);
 }
 
+// In this function two child processes are created that
+// communicate via a pipe.
 void	pipex(t_pipe *data)
 {
 	int		pipe_fd[2];
@@ -40,6 +39,7 @@ void	pipex(t_pipe *data)
 		execute_first_child(data, pipe_fd);
 	else
 	{
+		data->cmd_index++;
 		pid[1] = create_child(pid[1]);
 		if (pid[1] == 0)
 			execute_second_child(data, pipe_fd);
@@ -47,7 +47,7 @@ void	pipex(t_pipe *data)
 		{
 			close_pipes(pipe_fd);
 			wait_for_child();
-			ft_printf("I am the parent process\n");
+//			ft_printf("I am the parent process\n");
 		}
 	}
 }

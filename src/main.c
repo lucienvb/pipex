@@ -12,34 +12,19 @@
 
 #include "pipex.h"
 
-// In this function the command ls -l is executed for an
-// input file of choose and then writes it to an output
-// file of choice.
+//static void	test(void)
+//{
+//	system("leaks pipex");
+//}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipe	data;
 
+//	atexit(test);
 	if (!initialize(&data, argc, argv, envp))
 		return (0);
 	pipex(&data);
-//	cmd_to_outfile(&data);
 //	system("leaks pipex");
 	return (0);
 }
-
-// In this function two child processes are created that
-// communicate via a pipe.
-// The first child process is multiplying input 'a' (integer)
-// with 2, the second child process is multiplying the result
-// of the first child process with 3.
-/*int	main(int argc, char **argv, char **envp)
-{
-	int 	a;
-
-	(void)envp;
-	if (!p_input_parsing(argc, argv))
-		return (0);
-	a = ft_atoi(argv[1]);
-	pipex(a);
-	return (0);
-}*/

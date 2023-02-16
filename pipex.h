@@ -24,14 +24,14 @@
 # include "./libft/libft.h"
 
 // DEFINE
-# define FIRST "first"
-# define SECOND "second"
+# define FIRST 2
 
 // STRUCTURES
 typedef struct s_pipe
 {
 	int 	end;
 	int 	cmd_index;
+	int		last_cmd_index;
 	char 	**argv;
 	char	**path_list;
 	char 	*path;
@@ -47,17 +47,17 @@ void	pipex(t_pipe *data);
 pid_t	create_child(pid_t pid);
 void	wait_for_child(void);
 
+// EXECUTE
+int		execute_cmd_and_write(t_pipe *data, int *pipe_fd);
+void	init_in_and_outfile(t_pipe *data, int *pipe_fd);
+char	**init_path_and_argv(t_pipe *data, char **new_argv);
+
 // INITIALIZE
 bool	initialize(t_pipe *data, int argc, char **argv, char **envp);
 
 // PIPE FUNCTIONS
 void	create_pipe(int *pipe_fd);
 void	close_pipes(int *pipe_fd);
-
-// FUNCTION FOR EXECUTING A COMMAND ON A INFILE AND WRITE TO OUTFILE
-//int		cmd_to_outfile(t_pipe *data, char *buf);
-int		cmd_to_outfile(t_pipe *data, int *pipe_fd);
-int		cmd_to_pipe(t_pipe *data, int *pipe_fd);
 
 // PATH RELATED FUNCTIONS
 char	**split_path(char **envp);
