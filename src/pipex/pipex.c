@@ -15,22 +15,18 @@
 //static void	execute_first_child(int *a, int *pipe_fd, char *mes)
 static void	execute_first_child(t_pipe *data, int *pipe_fd)
 {
+	ft_printf("first child process:\n");
+	close(pipe_fd[0]);
 	cmd_to_pipe(data, pipe_fd);
-	close_pipes(pipe_fd);
-	ft_printf("first child process\n");
+//	close_pipes(pipe_fd);
 }
 
 static void	execute_second_child(t_pipe *data, int *pipe_fd)
 {
-	char	buf[999];
-	int 	bytes_read;
-
-	(void)data;
-	bytes_read = read(pipe_fd[0], buf, 999);
-	buf[bytes_read] = '\0';
-	close_pipes(pipe_fd);
-//	*a *= 3;
-	ft_printf("buf:\n%s\n", buf);
+	ft_printf("second child process:\n");
+	close(pipe_fd[1]);
+	cmd_to_outfile(data, pipe_fd);
+//	close_pipes(pipe_fd);
 }
 
 void	pipex(t_pipe *data)

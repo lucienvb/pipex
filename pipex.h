@@ -55,7 +55,8 @@ void	create_pipe(int *pipe_fd);
 void	close_pipes(int *pipe_fd);
 
 // FUNCTION FOR EXECUTING A COMMAND ON A INFILE AND WRITE TO OUTFILE
-int		cmd_to_outfile(t_pipe *data);
+//int		cmd_to_outfile(t_pipe *data, char *buf);
+int		cmd_to_outfile(t_pipe *data, int *pipe_fd);
 int		cmd_to_pipe(t_pipe *data, int *pipe_fd);
 
 // PATH RELATED FUNCTIONS

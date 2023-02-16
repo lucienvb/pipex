@@ -22,7 +22,7 @@ static bool	message_wrong_input(void)
 bool	p_input_parsing(int argc, char **argv)
 {
 	(void)argv;
-	if (argc != 2)
+	if (argc != 5)
 		return (message_wrong_input());
 	return (true);
 }
