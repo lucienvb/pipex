@@ -19,7 +19,7 @@ static void	execute_first_child(t_pipe *data, int *pipe_fd)
 	close(pipe_fd[1]);
 }
 
-static void	execute_second_child(t_pipe *data, int *pipe_fd)
+static void	execute_last_child(t_pipe *data, int *pipe_fd)
 {
 	close(pipe_fd[1]);
 	execute_cmd_and_write(data, pipe_fd);
@@ -42,12 +42,11 @@ void	pipex(t_pipe *data)
 		data->cmd_index++;
 		pid[1] = create_child(pid[1]);
 		if (pid[1] == 0)
-			execute_second_child(data, pipe_fd);
+			execute_last_child(data, pipe_fd);
 		else
 		{
 			close_pipes(pipe_fd);
 			wait_for_child();
-//			ft_printf("I am the parent process\n");
 		}
 	}
 }

@@ -18,7 +18,8 @@ NAME	:= pipex
 CC		:= cc
 C_FLAGS	?= -Wall -Wextra -Werror
 I_FLAG	?= -I.
-S_FLAG	?= -fsanitize=address -g
+# --> system("leaks executable") doesn't work with fsanitize on! <--
+#S_FLAG	?= -fsanitize=address -g
 
 SRC		:= \
 		src/main.c \

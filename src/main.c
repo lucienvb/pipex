@@ -12,19 +12,13 @@
 
 #include "pipex.h"
 
-//static void	test(void)
-//{
-//	system("leaks pipex");
-//}
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipe	data;
 
-//	atexit(test);
 	if (!initialize(&data, argc, argv, envp))
 		return (0);
 	pipex(&data);
-//	system("leaks pipex");
+	system("leaks pipex");
 	return (0);
 }

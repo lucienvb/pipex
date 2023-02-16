@@ -6,7 +6,7 @@
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/10 16:41:32 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2023/02/10 16:41:34 by lvan-bus      ########   odam.nl         */
+/*   Updated: 2023/02/16 14:09:35 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	init_to_pipe(int *pipe_fd)
 // the path is in this case the outfile
 static void	init_to_outfile(t_pipe *data, int *pipe_fd)
 {
-	int i;
-	int outfd;
+	int	i;
+	int	outfd;
 
 	i = data->end;
 	close(pipe_fd[1]);
