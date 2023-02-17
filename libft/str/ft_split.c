@@ -49,10 +49,13 @@ size_t	word_count(char const *s, char c)
 	return (count);
 }
 
-static char	**remove_split(char **split, size_t i)
+char	**remove_split(char **split)
 {
-	while (i)
-		free(split[--i]);
+	int i;
+
+	i = 0;
+	while (split[i])
+		free(split[i++]);
 	free(split);
 	return (NULL);
 }
@@ -76,7 +79,7 @@ char	**ft_split(char const *s, char c)
 			s++;
 		split[i] = word(((char *) s), c);
 		if (!split[i])
-			return (remove_split(split, i));
+			return (remove_split(split));
 		while (*s != c && *s)
 			s++;
 		i++;

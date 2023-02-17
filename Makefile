@@ -22,20 +22,20 @@ I_FLAG	?= -I.
 #S_FLAG	?= -fsanitize=address -g
 
 SRC		:= \
-		src/main.c \
-		src/error_handling/perror_and_exit.c \
-		src/error_handling/p_input_parsing.c \
+		src/child/child_create.c \
+        src/child/child_wait.c \
+        src/error_handling/error_handling.c \
+		src/error_handling/error_and_exit.c \
 		src/initialize/initialize.c \
-		src/pipex/execute/execute_cmd_and_write.c \
-		src/pipex/execute/init_in_and_outfile.c \
-		src/pipex/execute/init_path_and_argv.c \
-		src/pipex/pipex.c \
-		src/pipex/child/create_child.c \
-		src/pipex/child/wait_for_child.c \
-		src/pipex/pipe/create_pipe.c \
-		src/pipex/pipe/close_pipes.c \
-		src/pipex/path/split_path.c \
-		src/pipex/path/access_to_index.c
+		src/initialize/init_in_and_outfile.c \
+       	src/initialize/init_path_and_argv.c \
+  		src/main.c \
+  		src/pipe/pipex.c \
+		src/pipe/pipe_create.c \
+		src/pipe/pipes_close.c \
+		src/utils/u_access_to_index.c \
+		src/utils/u_execute_cmd_and_write.c \
+		src/utils/u_split_path.c
 
 OBJ		:= $(SRC:.c=.o)
 

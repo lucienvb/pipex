@@ -30,7 +30,7 @@ typedef struct node
 
 // ARRAY
 size_t	ft_array_len(char **array);
-void	ft_print_array(char **list);
+void	ft_array_print(char **list);
 
 // ASCII
 int		ft_isalnum(int c);
@@ -51,7 +51,6 @@ size_t	error_double_check(char **argv);
 size_t	error_limit_check(char **argv);
 size_t	error_num_check(char *str);
 size_t	error_num_check_for_2d_array(char **argv);
-bool	input_parsing(int argc, char **argv);
 
 // LISTS
 int		add_back(t_node **head, int content);
@@ -80,6 +79,7 @@ void	ft_putstr_fd(char *s, int fd);
 
 // STR
 char	**ft_split(char const *s, char c);
+char	**remove_split(char **split);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));

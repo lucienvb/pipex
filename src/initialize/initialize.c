@@ -12,16 +12,22 @@
 
 #include "pipex.h"
 
-bool	initialize(t_pipe *data, int argc, char **argv, char **envp)
+static void	init_path_list(t_pipe *pipe, char **envp)
 {
-	if (!p_input_parsing(argc, argv))
+	pipe->path_list = split_path(envp);
+	if (!pipe)
+		perror_and_exit("error: path not found\n");
+}
+
+bool	initialize(t_pipe *pipe, int argc, char **argv, char **envp)
+{
+	if (!error_handling(argc, argv))
 		return (false);
-	data->path_list = split_path(envp);
-	data->argv = argv;
-	data->end = argc - 1;
-	data->cmd_index = 2;
-	data->last_cmd_index = argc - 2;
-//	if (data->path == 0)
-//		return (false);
+	init_path_list(pipe, envp);
+	pipe->argv = argv;
+	pipe->end = argc - 1;
+	pipe->cmd_index = FIRST_CMD;
+	pipe->last_cmd_index = argc - 2;
+	pipe->child_count = argc - 3;
 	return (true);
 }

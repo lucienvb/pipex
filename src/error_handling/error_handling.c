@@ -15,11 +15,11 @@
 static bool	message_wrong_input(void)
 {
 	ft_printf("error: wrong input, please give the following:\n");
-	ft_printf("[pipex] [infile] [cmd1] [cmd2] [outfile]\n");
+	ft_printf("[./pipex] [infile] [cmd1] [cmd2] [outfile]\n");
 	return (false);
 }
 
-bool	p_input_parsing(int argc, char **argv)
+bool	error_handling(int argc, char **argv)
 {
 	(void)argv;
 	if (argc != 5)

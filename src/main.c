@@ -14,11 +14,11 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_pipe	data;
+	t_pipe	pipe;
 
-	if (!initialize(&data, argc, argv, envp))
+	if (!initialize(&pipe, argc, argv, envp))
 		return (0);
-	pipex(&data);
-	system("leaks pipex");
+	pipex(&pipe);
+//	system("leaks pipex");
 	return (0);
 }

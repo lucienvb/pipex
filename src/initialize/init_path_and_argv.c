@@ -35,23 +35,23 @@ static char	**get_new_argv(char *infile, char **argv)
 	return (new_argv);
 }
 
-// creates path: path to the called command
+// creates utils: utils to the called command
 // creates new_argv: array with 1) the command
 // 2) the flags 3) the infile
 // need to take a look at the perror_and_exit message
-char	**init_path_and_argv(t_pipe *data, char **new_argv)
+char	**init_path_and_argv(t_pipe *pipe, char **new_argv)
 {
 	int	i;
 	int	j;
 
-	i = data->cmd_index;
-	new_argv = ft_split(data->argv[i], ' ');
-	data->p_index = access_to_index(data->path_list, new_argv[0]);
-	j = data->p_index;
+	i = pipe->cmd_index;
+	new_argv = ft_split(pipe->argv[i], ' ');
+	pipe->p_index = access_to_index(pipe->path_list, new_argv[0]);
+	j = pipe->p_index;
 	if (j == -1)
 		perror_and_exit("command not found");
-	data->path = strjoin_three(data->path_list[j], "/", new_argv[0]);
-	if (i == FIRST)
-		new_argv = get_new_argv(data->argv[1], new_argv);
+	pipe->path = strjoin_three(pipe->path_list[j], "/", new_argv[0]);
+	if (i == FIRST_CMD)
+		new_argv = get_new_argv(pipe->argv[1], new_argv);
 	return (new_argv);
 }

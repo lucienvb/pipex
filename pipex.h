@@ -24,8 +24,9 @@
 # include "./libft/libft.h"
 
 // DEFINE
-# define FIRST 2
+# define FIRST_CMD 2
 # define FD_SIZE 2
+#
 
 // STRUCTURES
 typedef struct s_pipe
@@ -37,16 +38,16 @@ typedef struct s_pipe
 	char	**path_list;
 	char 	*path;
 	int 	p_index;
+	size_t	child_count;
 }	t_pipe;
 
 // FUNCTIONS
-bool	p_input_parsing(int argc, char **argv);
+bool	error_handling(int argc, char **argv);
 void	perror_and_exit(char *str);
-void	pipex(t_pipe *data);
 
 // CHILD FUNCTIONS
-pid_t	create_child(pid_t pid);
-void	wait_for_child(void);
+pid_t	child_create(pid_t pid);
+void	child_wait(t_pipe *pipe);
 
 // EXECUTE
 int		execute_cmd_and_write(t_pipe *data, int *pipe_fd);
@@ -57,8 +58,9 @@ char	**init_path_and_argv(t_pipe *data, char **new_argv);
 bool	initialize(t_pipe *data, int argc, char **argv, char **envp);
 
 // PIPE FUNCTIONS
-void	create_pipe(int *pipe_fd);
-void	close_pipes(int *pipe_fd);
+void	pipex(t_pipe *data);
+void	pipe_create(int *pipe_fd);
+void	pipes_close(int *pipe_fd);
 
 // PATH RELATED FUNCTIONS
 char	**split_path(char **envp);

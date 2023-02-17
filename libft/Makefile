@@ -22,7 +22,7 @@ IFLAG		?= -I.
 
 SRC_LIBFT	:= \
 	array/ft_array_len.c \
-	array/ft_print_array.c \
+	array/ft_array_print.c \
 	ascii/ft_isalnum.c \
 	ascii/ft_isalpha.c \
 	ascii/ft_isascii.c \
@@ -37,7 +37,6 @@ SRC_LIBFT	:= \
 	error_handling/error_limit_check.c \
 	error_handling/error_num_check.c \
 	error_handling/error_num_check_for_2d_array.c \
-	error_handling/input_parsing.c \
 	lists/add_back.c \
 	lists/find_list_lowest.c \
 	lists/list_last.c \

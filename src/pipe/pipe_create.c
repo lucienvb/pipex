@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   close_pipes.c                                      :+:    :+:            */
+/*   create_pipe.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/10 16:40:56 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2023/02/10 16:40:57 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/02/10 16:41:06 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/02/10 16:41:07 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	close_pipes(int *pipe_fd)
+void	pipe_create(int *pipe_fd)
 {
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
+	if (pipe(pipe_fd) == -1)
+		perror_and_exit("pipe");
 }

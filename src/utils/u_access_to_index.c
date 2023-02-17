@@ -18,10 +18,10 @@ char	*strjoin_three(char *s1, char *s2, char *s3)
 
 	join_three = ft_strjoin(s1, s2);
 	if (!join_three)
-		perror_and_exit("join_three fails");
+		perror_and_exit("strjoin_three fails");
 	join_three = ft_strjoin(join_three, s3);
 	if (!join_three)
-		perror_and_exit("join_three fails");
+		perror_and_exit("strjoin_three fails");
 	return (join_three);
 }
 
