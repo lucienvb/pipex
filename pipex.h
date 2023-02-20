@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <fcntl.h>
+# include <string.h>
 # include "./libft/libft.h"
 
 // DEFINE
@@ -58,7 +59,7 @@ char	**init_path_and_argv(t_pipe *data, char **new_argv);
 bool	initialize(t_pipe *data, int argc, char **argv, char **envp);
 
 // PIPE FUNCTIONS
-void	pipex(t_pipe *data);
+int 	pipex(t_pipe *data);
 void	pipe_create(int *pipe_fd);
 void	pipes_close(int *pipe_fd);
 

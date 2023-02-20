@@ -15,10 +15,11 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipe	pipe;
+	int 	status;
 
 	if (!initialize(&pipe, argc, argv, envp))
-		return (0);
-	pipex(&pipe);
-//	system("leaks pipex");
-	return (0);
+		return (EXIT_FAILURE);
+	status = pipex(&pipe);
+	system("leaks pipex");
+	return (status);
 }

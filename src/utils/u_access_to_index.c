@@ -14,14 +14,19 @@
 
 char	*strjoin_three(char *s1, char *s2, char *s3)
 {
-	char	*join_three;
+	char	*join_two;
+	char 	*join_three;
 
-	join_three = ft_strjoin(s1, s2);
-	if (!join_three)
+	join_two = ft_strjoin(s1, s2);
+	if (!join_two)
 		perror_and_exit("strjoin_three fails");
-	join_three = ft_strjoin(join_three, s3);
+	join_three = ft_strjoin(join_two, s3);
 	if (!join_three)
+	{
+		free(join_two);
 		perror_and_exit("strjoin_three fails");
+	}
+	free(join_two);
 	return (join_three);
 }
 
@@ -36,7 +41,11 @@ int	access_to_index(char **path, char *system_call)
 		syst_call_to_path = strjoin_three(path[i], "/", system_call);
 		if (access(syst_call_to_path, F_OK) == 0
 			&& access(syst_call_to_path, X_OK) == 0)
+		{
+			free(syst_call_to_path);
 			return (i);
+		}
+		free(syst_call_to_path);
 		i++;
 	}
 	return (-1);

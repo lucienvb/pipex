@@ -15,7 +15,7 @@
 static void	init_path_list(t_pipe *pipe, char **envp)
 {
 	pipe->path_list = split_path(envp);
-	if (!pipe)
+	if (!pipe->path_list)
 		perror_and_exit("error: path not found\n");
 }
 

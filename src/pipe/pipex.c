@@ -28,10 +28,11 @@ static void	execute_last_child(t_pipe *pipe, int *pipe_fd)
 
 // In this function two child processes are created that
 // communicate via a pipe.
-void	pipex(t_pipe *pipe)
+int	pipex(t_pipe *pipe)
 {
-	int		pipe_fd[2];
 	pid_t	pid[FD_SIZE];
+	int		pipe_fd[2];
+	int 	status;
 
 	ft_bzero(pid, sizeof(pid_t) * FD_SIZE);
 	pipe_create(pipe_fd);
@@ -48,7 +49,10 @@ void	pipex(t_pipe *pipe)
 		{
 			remove_split(pipe->path_list);
 			pipes_close(pipe_fd);
-			child_wait(pipe);
+//			child_wait(pipe);
+			waitpid(pid[0], &status, 0);
+			waitpid(pid[1], &status, 0);
 		}
 	}
+	return (WEXITSTATUS(status));
 }

@@ -18,18 +18,19 @@ static char	**get_new_argv(char *infile, char **argv)
 	size_t	len;
 	size_t	i;
 
-	if (!infile || !argv[0])
+	if (!argv[0])
 		return (NULL);
 	len = ft_array_len(argv);
 	new_argv = malloc((len + 2) * sizeof(char *));
 	if (!new_argv)
-		return (NULL);
+		return (free(argv), NULL);
 	i = 0;
 	while (argv[i])
 	{
 		new_argv[i] = argv[i];
 		i++;
 	}
+	free(argv);
 	new_argv[i++] = ft_strdup(infile);
 	new_argv[i] = NULL;
 	return (new_argv);
@@ -49,6 +50,7 @@ char	**init_path_and_argv(t_pipe *pipe, char **new_argv)
 	pipe->p_index = access_to_index(pipe->path_list, new_argv[0]);
 	j = pipe->p_index;
 	if (j == -1)
+		//ft_printf("Error opening file: %s\n", strerror(errno));
 		perror_and_exit("command not found");
 	pipe->path = strjoin_three(pipe->path_list[j], "/", new_argv[0]);
 	if (i == FIRST_CMD)
