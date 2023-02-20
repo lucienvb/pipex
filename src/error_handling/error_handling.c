@@ -26,3 +26,12 @@ bool	error_handling(int argc, char **argv)
 		return (message_wrong_input());
 	return (true);
 }
+
+bool	error_handling_bonus(int argc, char **argv)
+{
+	(void)argv;
+	if (argc < 5)
+		return (message_wrong_input());
+	return (true);
+}
+

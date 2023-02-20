@@ -17,9 +17,11 @@ int	main(int argc, char **argv, char **envp)
 	t_pipe	pipe;
 	int 	status;
 
-	if (!initialize(&pipe, argc, argv, envp))
+//	if (!initialize(&pipe, argc, argv, envp))
+	if (!initialize_bonus(&pipe, argc, argv, envp))
 		return (EXIT_FAILURE);
-	status = pipex(&pipe);
-	system("leaks pipex");
+	status = pipex_bonus(&pipe);
+//	status = pipex(&pipe);
+//	system("leaks pipex");
 	return (status);
 }

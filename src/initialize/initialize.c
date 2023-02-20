@@ -31,3 +31,17 @@ bool	initialize(t_pipe *pipe, int argc, char **argv, char **envp)
 	pipe->child_count = argc - 3;
 	return (true);
 }
+
+bool	initialize_bonus(t_pipe *pipe, int argc, char **argv, char **envp)
+{
+	if (!error_handling_bonus(argc, argv))
+		return (false);
+	init_path_list(pipe, envp);
+	pipe->argv = argv;
+	pipe->end = argc - 1;
+	pipe->cmd_index = FIRST_CMD;
+	pipe->last_cmd_index = argc - 2;
+	pipe->child_count = argc - 3;
+	return (true);
+}
+

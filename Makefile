@@ -22,6 +22,7 @@ I_FLAG	?= -I.
 #S_FLAG	?= -fsanitize=address -g
 
 SRC		:= \
+		src/child/child_execute.c \
 		src/child/child_create.c \
         src/child/child_wait.c \
         src/error_handling/error_handling.c \

@@ -12,14 +12,13 @@
 
 #include "pipex.h"
 
-void	child_wait(t_pipe *pipe)
+void	child_wait(t_pipe *pipe, pid_t *pid, int *status)
 {
-	int	i;
+	size_t	i;
 
-	i = pipe->child_count;
-	while (i)
+	i = 0;
+	while (i < pipe->child_count)
 	{
-		wait(NULL);
-		i--;
+		waitpid(pid[i++], status, 0);
 	}
 }
