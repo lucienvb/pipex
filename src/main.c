@@ -14,14 +14,18 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_pipe	pipe;
+	int		*pipe_fd;
 	int 	status;
+	t_pipe	pipe;
+	pid_t	*pid;
 
-//	if (!initialize(&pipe, argc, argv, envp))
-	if (!initialize_bonus(&pipe, argc, argv, envp))
+	if (!initialize(&pipe, argc, argv, envp))
+//	if (!initialize_bonus(&pipe, argc, argv, envp))
 		return (EXIT_FAILURE);
-	status = pipex_bonus(&pipe);
-//	status = pipex(&pipe);
-//	system("leaks pipex");
+	pid = NULL;
+	pipe_fd = NULL;
+//	status = pipex_bonus(&pipe);
+	status = pipex(&pipe, pid, pipe_fd);
+	system("leaks pipex");
 	return (status);
 }

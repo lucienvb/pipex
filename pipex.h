@@ -53,6 +53,7 @@ void	perror_and_exit(char *str);
 // CHILD FUNCTIONS
 void	execute_first_child(t_pipe *pipe, int *pipe_fd);
 void	execute_last_child(t_pipe *pipe, int *pipe_fd);
+void	execute_middle_child(t_pipe *pipe, int *pipe_fd);
 pid_t	child_create(pid_t pid);
 void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
 
@@ -65,7 +66,7 @@ char	**init_path_and_argv(t_pipe *data, char **new_argv);
 bool	initialize(t_pipe *data, int argc, char **argv, char **envp);
 
 // PIPE FUNCTIONS
-int 	pipex(t_pipe *data);
+int 	pipex(t_pipe *data, pid_t *pid, int *pipe_fd);
 void	pipe_create(int *pipe_fd);
 void	pipes_close(int *pipe_fd);
 

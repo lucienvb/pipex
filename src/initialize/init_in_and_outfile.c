@@ -34,7 +34,7 @@ static void	init_to_outfile(t_pipe *pipe, int *pipe_fd)
 	int	outfd;
 
 	i = pipe->end;
-	close(pipe_fd[1]);
+//	close(pipe_fd[1]);
 	outfd = open(pipe->argv[i], O_CREAT | O_TRUNC | O_WRONLY);
 	if (outfd == -1)
 		perror_and_exit("open");
@@ -46,18 +46,19 @@ static void	init_to_outfile(t_pipe *pipe, int *pipe_fd)
 
 void	init_in_and_outfile(t_pipe *pipe, int *pipe_fd)
 {
-//	ft_printf("cmd_index: %i\n", pipe->cmd_index);
-	if (pipe->cmd_index == pipe->last_cmd_index)
+	if (pipe->cmd_index == 2)
 	{
-		ft_printf("kom ik hier? 1\n");
-		init_to_outfile(pipe, pipe_fd);
-	}
-	else if (pipe->cmd_index == 2) {
-		ft_printf("kom ik hier? 2\n");
+		ft_printf("kom ik hier? [1]\n");
 		init_to_pipe(pipe_fd);
 	}
-	else {
-		ft_printf("kom ik hier? 3\n");
+	else if (pipe->cmd_index == pipe->last_cmd_index)
+	{
+		ft_printf("kom ik hier? [end]\n");
+		init_to_outfile(pipe, pipe_fd);
+	}
+	else
+	{
+		ft_printf("kom ik hier? [mid]\n");
 		init_from_and_to_pipe(pipe_fd);
 	}
 }
