@@ -42,18 +42,19 @@ static char	**get_new_argv(char *infile, char **argv)
 // need to take a look at the perror_and_exit message
 char	**init_path_and_argv(t_pipe *pipe, char **new_argv)
 {
-	int	i;
-	int	j;
+	int		j;
 
-	i = pipe->cmd_index;
-	new_argv = ft_split(pipe->argv[i], ' ');
+//	ft_printf("cmd index: %i\n", pipe->cmd_index);
+//	ft_printf("test: %s\n", pipe->argv[pipe->cmd_index]);
+	new_argv = ft_split(pipe->argv[pipe->cmd_index], ' ');
+//	ft_array_print(new_argv);
 	pipe->p_index = access_to_index(pipe->path_list, new_argv[0]);
 	j = pipe->p_index;
 	if (j == -1)
-		//ft_printf("Error opening file: %s\n", strerror(errno));
 		perror_and_exit("command not found");
 	pipe->path = strjoin_three(pipe->path_list[j], "/", new_argv[0]);
-	if (i == FIRST_CMD)
+//	ft_printf("test: %s\n", pipe->path);
+	if (pipe->cmd_index == FIRST_CMD)
 		new_argv = get_new_argv(pipe->argv[1], new_argv);
 	return (new_argv);
 }

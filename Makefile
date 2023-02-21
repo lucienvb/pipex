@@ -32,10 +32,13 @@ SRC		:= \
        	src/initialize/init_path_and_argv.c \
   		src/main.c \
   		src/pipe/pipex.c \
+  		src/pipe/pipex_bonus.c \
 		src/pipe/pipe_create.c \
 		src/pipe/pipes_close.c \
 		src/utils/u_access_to_index.c \
 		src/utils/u_execute_cmd_and_write.c \
+		src/utils/u_execute_parent.c \
+		src/utils/u_get_pid.c \
 		src/utils/u_split_path.c
 
 OBJ		:= $(SRC:.c=.o)
