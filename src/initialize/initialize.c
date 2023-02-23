@@ -24,6 +24,7 @@ bool	initialize(t_pipe *pipe, int argc, char **argv, char **envp)
 	if (!error_handling(argc, argv))
 		return (false);
 	init_path_list(pipe, envp);
+	pipe->envp = envp;
 	pipe->argv = argv;
 	pipe->end = argc - 1;
 	pipe->cmd_index = FIRST_CMD;

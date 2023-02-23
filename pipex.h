@@ -32,6 +32,7 @@
 typedef struct s_pipe
 {
 	int 	end;
+	char	**envp;
 	size_t	cmd_index;
 	size_t	last_cmd_index;
 	char	**argv;
@@ -64,7 +65,7 @@ char	**init_path_and_argv(t_pipe *data, char **new_argv);
 bool	initialize(t_pipe *data, int argc, char **argv, char **envp);
 
 // PIPE FUNCTIONS
-int 	pipex(t_pipe *data, pid_t *pid);
+int 	pipex(t_pipe *data);
 void	pipe_create(int *pipe_fd);
 void	pipes_close(int *pipe_fd);
 

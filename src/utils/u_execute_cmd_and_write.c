@@ -30,8 +30,9 @@ int	execute_cmd_and_write(t_pipe *pipe, int *pipe_fd)
 	init_in_and_outfile(pipe, pipe_fd);
 	new_argv = NULL;
 	new_argv = init_path_and_argv(pipe, new_argv);
-//	ft_printf("en hier3\n");
-	if (execve(pipe->path, new_argv, NULL) == -1)
+//	ft_array_print(new_argv);
+//	ft_printf("path: %s\n", pipe->path);
+	if (execve(pipe->path, new_argv, pipe->envp) == -1)
 	{
 		free_rem(new_argv, pipe);
 		perror_and_exit("execve");
