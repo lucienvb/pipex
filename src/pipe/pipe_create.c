@@ -12,8 +12,9 @@
 
 #include "pipex.h"
 
-void	pipe_create(int *pipe_fd)
+// this function creates a pipe checks if it succeeds
+void	pipe_create(int *fd)
 {
-	if (pipe(pipe_fd) == -1)
+	if (pipe(fd) == -1)
 		perror_and_exit("pipe");
 }

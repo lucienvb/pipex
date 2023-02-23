@@ -12,15 +12,18 @@
 
 #include "pipex.h"
 
+// 1) initialize: error handling and initializes all variables
+// 2) executes pipex function and saves status on variable status
+// 3) returns status
 int	main(int argc, char **argv, char **envp)
 {
 	int 	status;
-	t_pipe	pipe;
+	t_pipe	p;
 
-	if (!initialize(&pipe, argc, argv, envp))
+	if (!initialize(&p, argc, argv, envp))
 		return (EXIT_FAILURE);
 //	status = pipex_bonus(&pipe, pid);
-	status = pipex(&pipe);
+	status = pipex(&p);
 //	system("leaks pipex");
 	return (status);
 }

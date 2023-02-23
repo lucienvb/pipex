@@ -12,6 +12,7 @@
 
 #include "pipex.h"
 
+// this function joins three string
 char	*strjoin_three(char *s1, char *s2, char *s3)
 {
 	char	*join_two;
@@ -30,6 +31,8 @@ char	*strjoin_three(char *s1, char *s2, char *s3)
 	return (join_three);
 }
 
+// this function checks if a given system call exists
+// and if it's possible to execute it
 int	access_to_index(char **path, char *system_call)
 {
 	int		i;

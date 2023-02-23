@@ -12,8 +12,9 @@
 
 #include "pipex.h"
 
-void	pipes_close(int *pipe_fd)
+// this function closes both ends of a pipe
+void	pipes_close(int *fd)
 {
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
+	close(fd[0]);
+	close(fd[1]);
 }

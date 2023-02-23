@@ -12,30 +12,30 @@
 
 #include "pipex.h"
 
-// In this function two child processes are created that
-// communicate via a pipe.
-int	pipex(t_pipe *pipe)
+// pipex function wherein two or more child processes are created
+// that communicate with each other through pipes
+int	pipex(t_pipe *p)
 {
 	int		status;
-	int		pipe_fd[2];
+	int		fd[2];
 	pid_t	child;
 
-	if (dup2(pipe->infile, STDIN_FILENO) == -1)
+	if (dup2(p->infile, STDIN_FILENO) == -1)
 		perror_and_exit("dup2");
 	child = 0;
 	status = 0;
-	while (pipe->cmd_index <= pipe->last_cmd_index)
+	while (p->cmd_index <= p->last_cmd_index)
 	{
-		if (pipe->cmd_index != pipe->last_cmd_index)
-			pipe_create(pipe_fd);
+		if (p->cmd_index != p->last_cmd_index)
+			pipe_create(fd);
 		child = child_create(child);
 		if (child == 0)
-			execute_child(pipe, pipe_fd);
-		else if (child != 0 && pipe->cmd_index != pipe->last_cmd_index)
-			execute_parent(pipe_fd);
-		pipe->cmd_index++;
+			execute_child(p, fd);
+		else if (child != 0 && p->cmd_index != p->last_cmd_index)
+			execute_parent(fd);
+		p->cmd_index++;
 	}
 	if (child != 0)
-		execute_parent_end(pipe, pipe_fd, &status, &child);
+		execute_parent_end(p, fd, &status, &child);
 	return (WEXITSTATUS(status));
 }

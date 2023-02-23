@@ -26,28 +26,23 @@
 
 // DEFINE
 # define FIRST_CMD 2
-# define FD_SIZE 2
 
 // STRUCTURES
 typedef struct s_pipe
 {
-	int 	infile;
-	int 	outfile;
-	int 	end;
-	char	**envp;
-	size_t	cmd_index;
 	size_t	last_cmd_index;
-	char	**argv;
 	char	**path_list;
-	char	*path;
-	int		p_index;
 	size_t	child_count;
+	size_t	cmd_index;
+	int 	outfile;
+	int 	infile;
+	char	**envp;
+	char	**argv;
+	char	*path;
 }	t_pipe;
 
 // BONUS
 bool	error_handling_bonus(int argc, char **argv);
-bool	initialize_bonus(t_pipe *pipe, int argc, char **argv, char **envp);
-int		pipex_bonus(t_pipe *pipe, pid_t *pid);
 
 // FUNCTIONS
 bool	error_handling(int argc, char **argv);
@@ -59,7 +54,6 @@ pid_t	child_create(pid_t pid);
 void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
 
 // EXECUTE
-int		execute_cmd_and_write(t_pipe *data, int *pipe_fd);
 void	init_in_and_outfile(t_pipe *data, int *pipe_fd);
 char	**init_path_and_argv(t_pipe *data, char **new_argv);
 
@@ -79,6 +73,5 @@ int		access_to_index(char **path, char *system_call);
 char	*strjoin_three(char *s1, char *s2, char *s3);
 void	execute_parent(int *pipe_fd);
 void	execute_parent_end(t_pipe *pipe, int *pipe_fd, int *status, pid_t *pid);
-pid_t	*get_pid(t_pipe *pipe, pid_t *pid);
 
 #endif

@@ -12,6 +12,8 @@
 
 #include "pipex.h"
 
+// this function finds the PATH line in the environment (envp)
+// and returns this line from the first character after `PATH=`
 static char	*find_path_in_env(char **envp)
 {
 	int		i;
@@ -30,6 +32,8 @@ static char	*find_path_in_env(char **envp)
 	return (&tmp[5]);
 }
 
+// this function splits the path on char `:` and stores it
+// in an array
 char	**split_path(char **envp)
 {
 	char	**split;
