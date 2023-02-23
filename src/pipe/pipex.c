@@ -20,6 +20,8 @@ int	pipex(t_pipe *pipe)
 	int		pipe_fd[2];
 	pid_t	child;
 
+	if (dup2(pipe->infile, STDIN_FILENO) == -1)
+		perror_and_exit("dup2");
 	child = 0;
 	status = 0;
 	while (pipe->cmd_index <= pipe->last_cmd_index)
@@ -29,9 +31,11 @@ int	pipex(t_pipe *pipe)
 		child = child_create(child);
 		if (child == 0)
 			execute_child(pipe, pipe_fd);
+		else if (child != 0 && pipe->cmd_index != pipe->last_cmd_index)
+			execute_parent(pipe_fd);
 		pipe->cmd_index++;
 	}
 	if (child != 0)
-		execute_parent(pipe, pipe_fd, &status, &child);
+		execute_parent_end(pipe, pipe_fd, &status, &child);
 	return (WEXITSTATUS(status));
 }

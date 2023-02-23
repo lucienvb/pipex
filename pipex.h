@@ -31,6 +31,8 @@
 // STRUCTURES
 typedef struct s_pipe
 {
+	int 	infile;
+	int 	outfile;
 	int 	end;
 	char	**envp;
 	size_t	cmd_index;
@@ -52,7 +54,7 @@ bool	error_handling(int argc, char **argv);
 void	perror_and_exit(char *str);
 
 // CHILD FUNCTIONS
-void	execute_child(t_pipe *pipe, int *pipe_fd);
+int 	execute_child(t_pipe *pipe, int *pipe_fd);
 pid_t	child_create(pid_t pid);
 void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
 
@@ -75,7 +77,8 @@ int		access_to_index(char **path, char *system_call);
 
 // UTILS
 char	*strjoin_three(char *s1, char *s2, char *s3);
-void	execute_parent(t_pipe *pipe, int *pipe_fd, int *status, pid_t *pid);
+void	execute_parent(int *pipe_fd);
+void	execute_parent_end(t_pipe *pipe, int *pipe_fd, int *status, pid_t *pid);
 pid_t	*get_pid(t_pipe *pipe, pid_t *pid);
 
 #endif

@@ -37,5 +37,7 @@ char	**split_path(char **envp)
 
 	path = find_path_in_env(envp);
 	split = ft_split(path, ':');
+	if (!split)
+		return (NULL);
 	return (split);
 }

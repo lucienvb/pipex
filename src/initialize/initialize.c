@@ -21,9 +21,16 @@ static void	init_path_list(t_pipe *pipe, char **envp)
 
 bool	initialize(t_pipe *pipe, int argc, char **argv, char **envp)
 {
-	if (!error_handling(argc, argv))
+//	if (!error_handling(argc, argv))
+	if (!error_handling_bonus(argc, argv))
 		return (false);
 	init_path_list(pipe, envp);
+	pipe->infile = open(argv[1], O_RDONLY);
+	if (pipe->infile == -1 || pipe->infile > OPEN_MAX)
+		perror_and_exit("error: infile not found\n");
+	pipe->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (pipe->outfile == -1 || pipe->outfile > OPEN_MAX)
+		perror_and_exit("error: outfile not found\n");
 	pipe->envp = envp;
 	pipe->argv = argv;
 	pipe->end = argc - 1;
@@ -32,17 +39,3 @@ bool	initialize(t_pipe *pipe, int argc, char **argv, char **envp)
 	pipe->child_count = argc - 3;
 	return (true);
 }
-
-bool	initialize_bonus(t_pipe *pipe, int argc, char **argv, char **envp)
-{
-	if (!error_handling_bonus(argc, argv))
-		return (false);
-	init_path_list(pipe, envp);
-	pipe->argv = argv;
-	pipe->end = argc - 1;
-	pipe->cmd_index = FIRST_CMD;
-	pipe->last_cmd_index = argc - 2;
-	pipe->child_count = argc - 3;
-	return (true);
-}
-
