@@ -17,7 +17,7 @@
 // 3) returns status
 int	main(int argc, char **argv, char **envp)
 {
-	int 	status;
+	int		status;
 	t_pipe	p;
 
 	if (!initialize(&p, argc, argv, envp))

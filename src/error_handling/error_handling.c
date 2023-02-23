@@ -46,4 +46,3 @@ bool	error_handling_bonus(int argc, char **argv)
 		return (message_wrong_input_bonus());
 	return (true);
 }
-

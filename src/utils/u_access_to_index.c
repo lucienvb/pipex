@@ -16,7 +16,7 @@
 char	*strjoin_three(char *s1, char *s2, char *s3)
 {
 	char	*join_two;
-	char 	*join_three;
+	char	*join_three;
 
 	join_two = ft_strjoin(s1, s2);
 	if (!join_two)
