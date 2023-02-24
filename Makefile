@@ -30,6 +30,7 @@ SRC		:= \
 		src/initialize/initialize.c \
 		src/initialize/init_in_and_outfile.c \
        	src/initialize/init_path_and_argv.c \
+  		src/here_doc.c \
   		src/main.c \
   		src/pipe/pipex.c \
 		src/pipe/pipe_create.c \

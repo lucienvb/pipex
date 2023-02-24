@@ -43,9 +43,12 @@ typedef struct s_pipe
 
 // BONUS
 bool	error_handling_bonus(int argc, char **argv);
+void	here_doc(void);
 
 // FUNCTIONS
-bool	error_handling(int argc, char **argv);
+bool	error_handling(int argc);
+bool	error_handling_here_doc(int argc);
+bool	error_handling_multiple_pipes(int argc);
 void	perror_and_exit(char *str);
 
 // CHILD FUNCTIONS

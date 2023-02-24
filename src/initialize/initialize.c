@@ -20,11 +20,11 @@ static void	init_path_list(t_pipe *p, char **envp)
 		perror_and_exit("error: path not found\n");
 }
 
-// initializes almost all variables declared in the struct s_pipe
-bool	initialize(t_pipe *p, int argc, char **argv, char **envp)
+static bool	init_pipex(t_pipe *p, int argc, char **argv, char **envp)
 {
-//	if (!error_handling(argc, argv))
-	if (!error_handling_bonus(argc, argv))
+//	if (!error_handling(argc))
+//		return (false);
+	if (!error_handling_multiple_pipes(argc))
 		return (false);
 	init_path_list(p, envp);
 	p->infile = open(argv[1], O_RDONLY);
@@ -39,4 +39,24 @@ bool	initialize(t_pipe *p, int argc, char **argv, char **envp)
 	p->envp = envp;
 	p->argv = argv;
 	return (true);
+}
+
+static bool	init_here_doc(t_pipe *p, int argc, char **argv, char **envp)
+{
+	(void)p;
+	(void)envp;
+	(void)argv;
+	if (!error_handling_here_doc(argc))
+		return (false);
+	here_doc();
+	return (true);
+}
+
+// initializes almost all variables declared in the struct s_pipe
+bool	initialize(t_pipe *p, int argc, char **argv, char **envp)
+{
+	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
+		return (init_here_doc(p, argc, argv, envp));
+	else
+		return (init_pipex(p, argc, argv, envp));
 }

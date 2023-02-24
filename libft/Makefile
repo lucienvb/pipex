@@ -71,6 +71,10 @@ SRC_LIBFT	:= \
 	str/ft_strtrim.c \
 	str/ft_substr.c
 
+SRC_GNL	:= \
+	get_next_line/get_next_line.c \
+	get_next_line/get_next_line_utils.c
+
 SRC_PF	:= \
 	ft_printf/ft_printf.c \
 	ft_printf/ft_itoa.c \
@@ -79,7 +83,7 @@ SRC_PF	:= \
 	ft_printf/ft_memcpy.c \
 	ft_printf/ft_hex.c
 
-OBJ			:= $(SRC_LIBFT:.c=.o) $(SRC_PF:.c=.o)
+OBJ			:= $(SRC_LIBFT:.c=.o) $(SRC_GNL:.c=.o) $(SRC_PF:.c=.o)
 
 #=======================================#
 #========		RECIPES:		========#
