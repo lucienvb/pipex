@@ -43,7 +43,7 @@ typedef struct s_pipe
 
 // BONUS
 bool	error_handling_bonus(int argc, char **argv);
-void	here_doc(void);
+void	here_doc(char **argv);
 
 // FUNCTIONS
 bool	error_handling(int argc);

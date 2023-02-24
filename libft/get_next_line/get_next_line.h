@@ -38,5 +38,6 @@ char	*gnl_strdup(char *s1);
 char	*gnl_substr(char *s, unsigned int start, size_t len, int free_s);
 char	*gnl_strjoin(char *s1, char *s2);
 char	*gnl_strchr(const char *s, int c);
+void	gnl_print_fd(int fd);
 
 #endif

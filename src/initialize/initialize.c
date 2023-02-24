@@ -48,7 +48,7 @@ static bool	init_here_doc(t_pipe *p, int argc, char **argv, char **envp)
 	(void)argv;
 	if (!error_handling_here_doc(argc))
 		return (false);
-	here_doc();
+	here_doc(argv);
 	return (true);
 }
 

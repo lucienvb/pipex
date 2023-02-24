@@ -73,7 +73,8 @@ SRC_LIBFT	:= \
 
 SRC_GNL	:= \
 	get_next_line/get_next_line.c \
-	get_next_line/get_next_line_utils.c
+	get_next_line/get_next_line_utils.c \
+	get_next_line/gnl_print_fd.c
 
 SRC_PF	:= \
 	ft_printf/ft_printf.c \
