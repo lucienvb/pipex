@@ -50,17 +50,16 @@ int		here_doc(t_pipe *p);
 void	initialize_bonus(t_pipe *data, int argc, char **argv, char **envp);
 void	init_here_doc(t_pipe *p, int argc);
 
+// CHILD FUNCTIONS
+int		execute_child(t_pipe *pipe, int *pipe_fd);
+pid_t	child_create(pid_t pid);
+void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
 
 // FUNCTIONS
 bool	error_handling_one_pipe(int argc);
 bool	message_wrong_input(int bonus);
 bool	message_wrong_input_here_doc(void);
 void	perror_and_exit(char *str);
-
-// CHILD FUNCTIONS
-int		execute_child(t_pipe *pipe, int *pipe_fd);
-pid_t	child_create(pid_t pid);
-void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
 
 // INITIALIZE
 void	initialize(t_pipe *data, int argc, char **argv, char **envp);
@@ -73,7 +72,6 @@ void	init_path_list(t_pipe *p, char **envp);
 int		pipex(t_pipe *data);
 void	pipe_create(int *pipe_fd);
 void	pipes_close(int *pipe_fd);
-
 
 // UTILS
 int		access_to_index(char **path, char *system_call);
