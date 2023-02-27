@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/27 16:51:35 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2023/02/27 16:51:36 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/02/10 16:39:17 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/02/27 16:52:11 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(int argc, char **argv, char **envp)
 	int		status;
 	t_pipe	p;
 
-	if (!error_handling_one_pipe(argc))
+	if (!error_handling(argc, argv))
 		return (EXIT_FAILURE);
-	initialize(&p, argc, argv, envp);
+	initialize_bonus(&p, argc, argv, envp);
 	status = pipex(&p);
 //	system("leaks pipex");
 	return (status);

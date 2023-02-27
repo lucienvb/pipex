@@ -45,11 +45,14 @@ typedef struct s_pipe
 }	t_pipe;
 
 // BONUS
-bool	error_handling_bonus(int argc, char **argv);
+bool	error_handling(int argc, char **argv);
 int		here_doc(t_pipe *p);
+void	initialize_bonus(t_pipe *data, int argc, char **argv, char **envp);
+void	init_here_doc(t_pipe *p, int argc);
+
 
 // FUNCTIONS
-bool	error_handling(int argc, char **argv);
+bool	error_handling_one_pipe(int argc);
 bool	message_wrong_input(int bonus);
 bool	message_wrong_input_here_doc(void);
 void	perror_and_exit(char *str);
@@ -63,11 +66,14 @@ void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
 void	initialize(t_pipe *data, int argc, char **argv, char **envp);
 void	init_in_and_outfile(t_pipe *data, int *pipe_fd);
 char	**init_path_and_argv(t_pipe *data, char **new_argv);
+void	init_pipex(t_pipe *p, int argc, char **argv);
+void	init_path_list(t_pipe *p, char **envp);
 
 // PIPE FUNCTIONS
 int		pipex(t_pipe *data);
 void	pipe_create(int *pipe_fd);
 void	pipes_close(int *pipe_fd);
+
 
 // UTILS
 int		access_to_index(char **path, char *system_call);
