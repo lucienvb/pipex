@@ -24,8 +24,8 @@ char	*strjoin_three(char *s1, char *s2, char *s3)
 	join_three = ft_strjoin(join_two, s3);
 	if (!join_three)
 	{
-		free(join_two);
 		perror_and_exit("strjoin_three fails");
+		free(join_two);
 	}
 	free(join_two);
 	return (join_three);

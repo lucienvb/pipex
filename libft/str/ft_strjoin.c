@@ -15,7 +15,7 @@
 #include <string.h>
 #include "../libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*p;
 	char	*temp;
@@ -27,17 +27,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	temp = p;
 	while (*s1)
-	{
-		*temp = *s1;
-		temp++;
-		s1++;
-	}
+		*temp++ = *s1++;
 	while (*s2)
-	{
-		*temp = *s2;
-		temp++;
-		s2++;
-	}
+		*temp++ = *s2++;
 	*temp = '\0';
 	return ((char *)p);
 }

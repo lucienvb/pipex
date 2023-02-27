@@ -27,5 +27,4 @@ void	gnl_print_fd(int fd)
 		ft_printf("%s", line);
 		free(line);
 	}
-//	close(fd);
 }

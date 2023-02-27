@@ -26,6 +26,8 @@
 
 // DEFINE
 # define FIRST_CMD 2
+# define FIRST_CMD_HD 3
+# define LIM 2
 
 // STRUCTURES
 typedef struct s_pipe
@@ -34,6 +36,7 @@ typedef struct s_pipe
 	char	**path_list;
 	size_t	child_count;
 	size_t	cmd_index;
+	int		here_doc;
 	int		outfile;
 	int		infile;
 	char	**envp;
@@ -43,12 +46,12 @@ typedef struct s_pipe
 
 // BONUS
 bool	error_handling_bonus(int argc, char **argv);
-void	here_doc(char **argv);
+int		here_doc(t_pipe *p);
 
 // FUNCTIONS
-bool	error_handling(int argc);
-bool	error_handling_here_doc(int argc);
-bool	error_handling_multiple_pipes(int argc);
+bool	error_handling(int argc, char **argv);
+bool	message_wrong_input(int bonus);
+bool	message_wrong_input_here_doc(void);
 void	perror_and_exit(char *str);
 
 // CHILD FUNCTIONS
@@ -57,7 +60,7 @@ pid_t	child_create(pid_t pid);
 void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
 
 // INITIALIZE
-bool	initialize(t_pipe *data, int argc, char **argv, char **envp);
+void	initialize(t_pipe *data, int argc, char **argv, char **envp);
 void	init_in_and_outfile(t_pipe *data, int *pipe_fd);
 char	**init_path_and_argv(t_pipe *data, char **new_argv);
 

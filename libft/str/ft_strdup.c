@@ -14,23 +14,25 @@
 #include <stdlib.h>
 #include "../libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s, int free_s)
 {
 	static char	*dup;
 	char		*temp;
 	int			strsize;
 
-	strsize = ft_strlen(s1) + 1;
+	strsize = ft_strlen(s) + 1;
 	dup = malloc(strsize * sizeof(char));
 	if (!dup)
 		return (0);
 	temp = dup;
-	while (*s1)
+	while (*s)
 	{
-		*temp = *s1;
+		*temp = *s;
 		temp++;
-		s1++;
+		s++;
 	}
+	if (free_s)
+		free(s);
 	*temp = '\0';
 	return (dup);
 }

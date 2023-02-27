@@ -48,7 +48,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1)
 		return (NULL);
 	if (!set || !*s1)
-		return (ft_strdup(s1));
+		return (ft_strdup((char *) s1, 0));
 	start = 0;
 	end = ft_strlen(s1) - 1;
 	while (s1[start] && checkset(set, s1[start]) == 1)
@@ -56,6 +56,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (end != 0 && checkset(set, s1[end]) == 1)
 		end--;
 	if (start > end)
-		return (ft_strdup(""));
+		return (ft_strdup("", 0));
 	return (trim(s1, start, end));
 }

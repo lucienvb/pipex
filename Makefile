@@ -19,7 +19,7 @@ CC		:= cc
 C_FLAGS	?= -Wall -Wextra -Werror
 I_FLAG	?= -I.
 # --> system("leaks executable") doesn't work with fsanitize on! <--
-#S_FLAG	?= -fsanitize=address -g
+S_FLAG	?= -fsanitize=address -g
 
 SRC		:= \
 		src/child/child_execute.c \
@@ -27,6 +27,7 @@ SRC		:= \
         src/child/child_wait.c \
         src/error_handling/error_handling.c \
 		src/error_handling/error_and_exit.c \
+		src/error_handling/message_wrong_input.c \
 		src/initialize/initialize.c \
 		src/initialize/init_in_and_outfile.c \
        	src/initialize/init_path_and_argv.c \

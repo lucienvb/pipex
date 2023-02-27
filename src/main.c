@@ -20,9 +20,13 @@ int	main(int argc, char **argv, char **envp)
 	int		status;
 	t_pipe	p;
 
-	if (!initialize(&p, argc, argv, envp))
+	if (!error_handling(argc, argv))
 		return (EXIT_FAILURE);
-//	status = pipex_bonus(&pipe, pid);
+	initialize(&p, argc, argv, envp);
+
+//	if (p.here_doc)
+//		status = here_doc(&p);
+//	else
 	status = pipex(&p);
 //	system("leaks pipex");
 	return (status);

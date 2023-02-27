@@ -32,7 +32,7 @@ static char	**get_new_argv(char *infile, char **argv)
 		i++;
 	}
 	free(argv);
-	new_argv[i++] = ft_strdup(infile);
+	new_argv[i++] = ft_strdup(infile, 0);
 	new_argv[i] = NULL;
 	return (new_argv);
 }
@@ -48,7 +48,10 @@ char	**init_path_and_argv(t_pipe *p, char **new_argv)
 	if (cmd_path == -1)
 		perror_and_exit("command not found");
 	p->path = strjoin_three(p->path_list[cmd_path], "/", new_argv[0]);
-	if (p->cmd_index == FIRST_CMD)
+	if (p->cmd_index == FIRST_CMD && !p->here_doc)
 		new_argv = get_new_argv(p->argv[1], new_argv);
+//	ft_array_print(new_argv);
+//	else if (p->cmd_index == FIRST_CMD_HD && p->here_doc)
+//		new_argv = get_new_argv("fd[1]", new_argv);
 	return (new_argv);
 }
