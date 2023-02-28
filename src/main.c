@@ -25,6 +25,5 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	initialize(&p, argc, argv, envp);
 	status = pipex(&p);
-//	system("leaks pipex");
 	return (status);
 }

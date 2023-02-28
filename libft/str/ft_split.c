@@ -51,7 +51,7 @@ size_t	word_count(char const *s, char c)
 
 char	**remove_split(char **split)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (split[i])

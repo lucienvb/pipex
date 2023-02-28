@@ -12,13 +12,20 @@
 
 #include "pipex.h"
 
-// initializes almost all variables declared in the struct s_pipe
+static void	set_outfile(t_pipe *p, int argc, char **argv)
+{
+	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
+		p->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_APPEND, 0644);
+	else
+		p->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (p->outfile == -1 || p->outfile > FOPEN_MAX)
+		perror_and_exit("error: outfile not found\n");
+}
+
 void	initialize_bonus(t_pipe *p, int argc, char **argv, char **envp)
 {
 	init_path_list(p, envp);
-	p->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (p->outfile == -1 || p->outfile > OPEN_MAX)
-		perror_and_exit("error: outfile not found\n");
+	set_outfile(p, argc, argv);
 	p->argv = argv;
 	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
 		init_here_doc(p, argc);

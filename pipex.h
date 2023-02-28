@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include "./libft/libft.h"
+# include <sys/wait.h>
 
 // DEFINE
 # define FIRST_CMD 2

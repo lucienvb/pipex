@@ -23,7 +23,7 @@ void	init_path_list(t_pipe *p, char **envp)
 void	init_pipex(t_pipe *p, int argc, char **argv)
 {
 	p->infile = open(argv[1], O_RDONLY);
-	if (p->infile == -1 || p->infile > OPEN_MAX)
+	if (p->infile == -1 || p->infile > FOPEN_MAX)
 		perror_and_exit("error: infile not found\n");
 	p->child_count = argc - 3;
 	p->cmd_index = FIRST_CMD;
@@ -35,7 +35,7 @@ void	initialize(t_pipe *p, int argc, char **argv, char **envp)
 {
 	init_path_list(p, envp);
 	p->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (p->outfile == -1 || p->outfile > OPEN_MAX)
+	if (p->outfile == -1 || p->outfile > FOPEN_MAX)
 		perror_and_exit("error: outfile not found\n");
 	p->argv = argv;
 	init_pipex(p, argc, argv);

@@ -17,7 +17,6 @@ int	here_doc(t_pipe *p)
 	int		hd;
 	int		fd[2];
 	char	*line;
-	char 	*n_line;
 
 	hd = 0;
 	pipe_create(fd);
@@ -32,10 +31,8 @@ int	here_doc(t_pipe *p)
 			free(line);
 			break ;
 		}
-		n_line = ft_strjoin(line, "\n");
+		write(fd[1], line, ft_strlen(line));
 		free(line);
-		write(fd[1], n_line, ft_strlen(n_line));
-		free(n_line);
 	}
 	close(fd[1]);
 	close(hd);

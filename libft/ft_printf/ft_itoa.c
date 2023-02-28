@@ -72,11 +72,6 @@ char	*pf_utoa(unsigned int n)
 		return (0);
 	if (nb == 0)
 		p[0] = '0';
-	if (nb < 0)
-	{
-		nb = nb * -1;
-		p[0] = '-';
-	}
 	p[i--] = '\0';
 	while (nb > 0)
 	{
