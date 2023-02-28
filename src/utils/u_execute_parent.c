@@ -22,14 +22,11 @@ void	execute_parent(int *fd)
 	close(fd[0]);
 }
 
-// need to check if it is necessary to close fd here
-
 // this function frees the path_list variable and waits for
 // the child processes and saves the status on the status address
-void	execute_parent_end(t_pipe *p, int *fd, int *status, pid_t *child)
+void	execute_parent_end(t_pipe *p, int *status, pid_t *child)
 {
-	(void)fd;
+	close(p->outfile);
 	remove_split(p->path_list);
-//	pipes_close(fd);
 	child_wait(p, child, status);
 }

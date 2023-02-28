@@ -76,7 +76,7 @@ void	pipes_close(int *pipe_fd);
 // UTILS
 int		access_to_index(char **path, char *system_call);
 void	execute_parent(int *pipe_fd);
-void	execute_parent_end(t_pipe *pipe, int *pipe_fd, int *status, pid_t *pid);
+void	execute_parent_end(t_pipe *p, int *status, pid_t *child);
 char	**split_path(char **envp);
 char	*strjoin_three(char *s1, char *s2, char *s3);
 

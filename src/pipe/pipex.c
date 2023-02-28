@@ -37,6 +37,6 @@ int	pipex(t_pipe *p)
 		p->cmd_index++;
 	}
 	if (child != 0)
-		execute_parent_end(p, fd, &status, &child);
+		execute_parent_end(p, &status, &child);
 	return (WEXITSTATUS(status));
 }
