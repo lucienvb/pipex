@@ -46,6 +46,7 @@ int		ft_atoi_with_overflow(const char *str, int *result);
 char	*ft_itoa(int n);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+char	*ft_str_tolower(const char *str);
 
 // ERROR HANDLING
 size_t	error_double_check(char **argv);

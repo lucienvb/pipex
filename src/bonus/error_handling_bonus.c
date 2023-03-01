@@ -29,8 +29,13 @@ static bool	error_handling_here_doc(int argc)
 
 bool	error_handling(int argc, char **argv)
 {
-	if (ft_strncmp(argv[1], "here_doc", 9) == 0)
-		return (error_handling_here_doc(argc));
+	if (argc >= 5)
+	{
+		if (ft_strncmp(argv[1], "here_doc", 9) == 0)
+			return (error_handling_here_doc(argc));
+		else
+			return (error_handling_multiple_pipes(argc));
+	}
 	else
-		return (error_handling_multiple_pipes(argc));
+		return (false);
 }

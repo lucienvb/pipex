@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   perror_and_exit.c                                  :+:    :+:            */
+/*   ft_str_tolower.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/02/10 16:39:53 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2023/02/10 16:39:54 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/03/01 17:08:26 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/03/01 17:08:27 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "libft.h"
 
-void	error(void)
+char	*ft_str_tolower(const char *str)
 {
-	perror("Error");
-	exit(errno);
-}
+	size_t	i;
+	size_t	len;
+	char	*new_str;
 
-void	error_message(char *message)
-{
-	char	*sys_err_msg;
-
-	sys_err_msg = ft_str_tolower(strerror(errno));
-	ft_putstr_fd("zsh: ", STDERR_FILENO);
-	ft_putstr_fd(sys_err_msg, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putstr_fd(message, STDERR_FILENO);
-	ft_putchar_fd('\n', STDERR_FILENO);
-	free(sys_err_msg);
-	exit(errno);
+	len = ft_strlen(str);
+	new_str = malloc((len + 1) * sizeof(char));
+	i = 0;
+	while (str[i])
+	{
+		new_str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	new_str[i] = '\0';
+	return (new_str);
 }

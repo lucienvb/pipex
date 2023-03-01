@@ -33,6 +33,7 @@ SRC_LIBFT	:= \
 	convert/ft_itoa.c \
 	convert/ft_tolower.c \
 	convert/ft_toupper.c \
+	convert/ft_str_tolower.c \
 	error_handling/error_double_check.c \
 	error_handling/error_limit_check.c \
 	error_handling/error_num_check.c \
