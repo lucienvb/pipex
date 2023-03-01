@@ -21,7 +21,7 @@ int	pipex(t_pipe *p)
 	pid_t	child;
 
 	if (dup2(p->infile, STDIN_FILENO) == -1)
-		perror_and_exit("dup2");
+		error();
 	close(p->infile);
 	child = 0;
 	status = 0;

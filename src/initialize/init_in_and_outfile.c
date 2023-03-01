@@ -17,7 +17,7 @@ static void	init_to_pipe(int *fd)
 {
 	close(fd[0]);
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
-		perror_and_exit("dup2");
+		error();
 	close(fd[1]);
 }
 
@@ -25,7 +25,7 @@ static void	init_to_pipe(int *fd)
 static void	init_to_outfile(t_pipe *p)
 {
 	if (dup2(p->outfile, STDOUT_FILENO) == -1)
-		perror_and_exit("dup2");
+		error();
 	close(p->outfile);
 }
 

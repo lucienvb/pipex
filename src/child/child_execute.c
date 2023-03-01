@@ -32,7 +32,7 @@ int	execute_child(t_pipe *p, int *fd)
 	if (execve(p->path, new_argv, p->envp) == -1)
 	{
 		free_rem(new_argv, p);
-		perror_and_exit("execve");
+		error();
 	}
 	free_rem(new_argv, p);
 	return (0);

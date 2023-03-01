@@ -26,7 +26,7 @@ SRC_REG		:= \
 		src/child/child_create.c \
         src/child/child_wait.c \
         src/error_handling/error_handling_one_pipe.c \
-		src/error_handling/error_and_exit.c \
+		src/error_handling/error_message.c \
 		src/error_handling/message_wrong_input.c \
 		src/initialize/initialize.c \
 		src/initialize/init_in_and_outfile.c \
@@ -34,7 +34,6 @@ SRC_REG		:= \
        	src/main.c \
   		src/pipe/pipex.c \
 		src/pipe/pipe_create.c \
-		src/pipe/pipes_close.c \
 		src/utils/u_access_to_index.c \
 		src/utils/u_execute_parent.c \
 		src/utils/u_split_path.c
@@ -44,14 +43,13 @@ SRC_BONUS	:= \
 		src/child/child_create.c \
         src/child/child_wait.c \
         src/error_handling/error_handling_one_pipe.c \
-		src/error_handling/error_and_exit.c \
+		src/error_handling/error_message.c \
 		src/error_handling/message_wrong_input.c \
 		src/initialize/initialize.c \
 		src/initialize/init_in_and_outfile.c \
        	src/initialize/init_path_and_argv.c \
   		src/pipe/pipex.c \
 		src/pipe/pipe_create.c \
-		src/pipe/pipes_close.c \
 		src/utils/u_access_to_index.c \
 		src/utils/u_execute_parent.c \
 		src/utils/u_split_path.c \

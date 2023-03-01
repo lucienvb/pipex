@@ -18,7 +18,7 @@ void	execute_parent(int *fd)
 {
 	close(fd[1]);
 	if (dup2(fd[0], STDIN_FILENO) == -1)
-		perror_and_exit("dup2");
+		error();
 	close(fd[0]);
 }
 

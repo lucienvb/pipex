@@ -16,5 +16,5 @@
 void	pipe_create(int *fd)
 {
 	if (pipe(fd) == -1)
-		perror_and_exit("pipe");
+		error();
 }

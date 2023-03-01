@@ -16,6 +16,6 @@ pid_t	child_create(pid_t child)
 {
 	child = fork();
 	if (child == -1)
-		perror_and_exit("fork");
+		error();
 	return (child);
 }

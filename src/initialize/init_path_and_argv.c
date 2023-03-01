@@ -46,7 +46,7 @@ char	**init_path_and_argv(t_pipe *p, char **new_argv)
 	new_argv = ft_split(p->argv[p->cmd_index], ' ');
 	cmd_path = access_to_index(p->path_list, new_argv[0]);
 	if (cmd_path == -1)
-		perror_and_exit("command not found");
+		error_message("Command not found");
 	p->path = strjoin_three(p->path_list[cmd_path], "/", new_argv[0]);
 	if (p->cmd_index == FIRST_CMD && !p->here_doc)
 		new_argv = get_new_argv(p->argv[1], new_argv);

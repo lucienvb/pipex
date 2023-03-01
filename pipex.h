@@ -24,6 +24,7 @@
 # include <string.h>
 # include "./libft/libft.h"
 # include <sys/wait.h>
+# include <sys/errno.h>
 
 // DEFINE
 # define FIRST_CMD 2
@@ -57,10 +58,11 @@ pid_t	child_create(pid_t pid);
 void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
 
 // FUNCTIONS
+void	error(void);
 bool	error_handling_one_pipe(int argc);
 bool	message_wrong_input(int bonus);
 bool	message_wrong_input_here_doc(void);
-void	perror_and_exit(char *str);
+void	error_message(char *message);
 
 // INITIALIZE
 void	initialize(t_pipe *data, int argc, char **argv, char **envp);
