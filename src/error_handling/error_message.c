@@ -18,16 +18,27 @@ void	error(void)
 	exit(errno);
 }
 
-void	error_message(char *message)
+static void	put_err_msg(char *msg, char *sys_err_msg)
 {
-	char	*sys_err_msg;
-
-	sys_err_msg = ft_str_tolower(strerror(errno));
 	ft_putstr_fd("zsh: ", STDERR_FILENO);
 	ft_putstr_fd(sys_err_msg, STDERR_FILENO);
 	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putstr_fd(message, STDERR_FILENO);
+	ft_putstr_fd(msg, STDERR_FILENO);
 	ft_putchar_fd('\n', STDERR_FILENO);
+}
+
+void	error_message(char *message, int errnum)
+{
+	char	*sys_err_msg;
+
+	if (errnum == 127)
+		sys_err_msg = ft_strdup("command not found", 0);
+	else
+		sys_err_msg = ft_str_tolower(strerror(errno));
+	put_err_msg(message, sys_err_msg);
 	free(sys_err_msg);
-	exit(errno);
+	if (errnum == 127 || errnum == 0)
+		exit(errnum);
+	else
+		exit(errno);
 }

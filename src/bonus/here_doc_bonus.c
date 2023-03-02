@@ -24,7 +24,7 @@ int	here_doc(t_pipe *p)
 	{
 		write(STDOUT_FILENO, "> ", 2);
 		if (dup2(hd, STDIN_FILENO) == -1)
-			error_message("");
+			error_message("", 0);
 		line = get_next_line(hd);
 		if (ft_strncmp(line, p->argv[LIM], ft_strlen(p->argv[LIM])) == 0)
 		{

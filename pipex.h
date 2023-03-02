@@ -47,7 +47,7 @@ typedef struct s_pipe
 }	t_pipe;
 
 // BONUS
-bool	error_handling(int argc, char **argv);
+void	error_handling(int argc);
 int		here_doc(t_pipe *p);
 void	initialize_bonus(t_pipe *data, int argc, char **argv, char **envp);
 void	init_here_doc(t_pipe *p, int argc);
@@ -59,10 +59,10 @@ void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
 
 // FUNCTIONS
 void	error(void);
-bool	error_handling_one_pipe(int argc);
-bool	message_wrong_input(int bonus);
-bool	message_wrong_input_here_doc(void);
-void	error_message(char *message);
+void	error_handling_one_pipe(int argc);
+void	message_wrong_input(int bonus);
+//bool 	message_wrong_input_here_doc(void);
+void	error_message(char *message, int errnum);
 
 // INITIALIZE
 void	initialize(t_pipe *data, int argc, char **argv, char **envp);

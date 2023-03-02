@@ -13,9 +13,11 @@
 #include "../../pipex.h"
 
 // error handling for one pipe
-bool	error_handling_one_pipe(int argc)
+void	error_handling_one_pipe(int argc)
 {
 	if (argc != 5)
-		return (message_wrong_input(0));
-	return (true);
+	{
+		message_wrong_input(0);
+		exit(EXIT_FAILURE);
+	}
 }

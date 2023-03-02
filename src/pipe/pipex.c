@@ -21,7 +21,7 @@ int	pipex(t_pipe *p)
 	pid_t	child;
 
 	if (dup2(p->infile, STDIN_FILENO) == -1)
-		error();
+		error_message("no such file or directory", 0);
 	close(p->infile);
 	child = 0;
 	status = 0;

@@ -21,8 +21,7 @@ int	main(int argc, char **argv, char **envp)
 	int		status;
 	t_pipe	p;
 
-	if (!error_handling_one_pipe(argc))
-		return (EXIT_FAILURE);
+	error_handling_one_pipe(argc);
 	initialize(&p, argc, argv, envp);
 	status = pipex(&p);
 	return (status);

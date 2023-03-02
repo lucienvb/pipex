@@ -20,11 +20,11 @@ char	*strjoin_three(char *s1, char *s2, char *s3)
 
 	join_two = ft_strjoin(s1, s2);
 	if (!join_two)
-		error_message("strjoin_three fails");
+		error_message("strjoin_three fails", 0);
 	join_three = ft_strjoin(join_two, s3);
 	if (!join_three)
 	{
-		error_message("strjoin_three fails");
+		error_message("strjoin_three fails", 0);
 		free(join_two);
 	}
 	free(join_two);
