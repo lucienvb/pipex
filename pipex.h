@@ -44,6 +44,7 @@ typedef struct s_pipe
 	char	**envp;
 	char	**argv;
 	char	*path;
+	int 	ex;
 }	t_pipe;
 
 // BONUS

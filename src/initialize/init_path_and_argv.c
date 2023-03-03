@@ -44,10 +44,15 @@ char	**init_path_and_argv(t_pipe *p, char **new_argv)
 	int	cmd_path;
 
 	new_argv = ft_split(p->argv[p->cmd_index], ' ');
-	cmd_path = access_to_index(p->path_list, new_argv[0]);
-	if (cmd_path == -1)
-		error_message(p->argv[p->cmd_index], 127);
-	p->path = strjoin_three(p->path_list[cmd_path], "/", new_argv[0]);
+	if (access(new_argv[0], F_OK | X_OK) == 0)
+		p->path = new_argv[0];
+	else
+	{
+		cmd_path = access_to_index(p->path_list, new_argv[0]);
+		if (cmd_path == -1)
+			error_message(p->argv[p->cmd_index], 127);
+		p->path = strjoin_three(p->path_list[cmd_path], "/", new_argv[0]);
+	}
 	if (p->cmd_index == FIRST_CMD && !p->here_doc)
 		new_argv = get_new_argv(p->argv[1], new_argv);
 	return (new_argv);

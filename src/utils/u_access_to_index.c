@@ -42,7 +42,7 @@ int	access_to_index(char **path, char *system_call)
 	while (path[i])
 	{
 		syst_call_to_path = strjoin_three(path[i], "/", system_call);
-		if (access(syst_call_to_path, F_OK) == 0
+		if (access(syst_call_to_path, F_OK | X_OK) == 0
 			&& access(syst_call_to_path, X_OK) == 0)
 		{
 			free(syst_call_to_path);
