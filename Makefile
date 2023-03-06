@@ -19,7 +19,7 @@ CC		:= cc
 C_FLAGS	?= -Wall -Wextra -Werror
 I_FLAG	?= -I.
 # --> system("leaks executable") doesn't work with fsanitize on! <--
-S_FLAG	?= -fsanitize=address -g
+#S_FLAG	?= -fsanitize=address -g
 
 SRC_REG		:= \
 		src/child/child_execute.c \
@@ -92,9 +92,9 @@ fclean: clean
 		rm -f $(NAME)
 		$(MAKE) -C ./libft fclean
 
-comp: all clean
+comp: fclean all clean
 
-fully: bonus clean
+full: fclean bonus clean
 
 re: fclean all
 

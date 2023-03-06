@@ -22,10 +22,15 @@ int	here_doc(t_pipe *p)
 	pipe_create(fd);
 	while (1)
 	{
-		write(STDOUT_FILENO, "> ", 2);
+		write(STDOUT_FILENO, "pipe heredoc> ", 2);
 		if (dup2(hd, STDIN_FILENO) == -1)
 			error_message("", 0);
 		line = get_next_line(hd);
+		if (!line)
+		{
+			write(STDERR_FILENO, "\n", 1);
+			exit(EXIT_FAILURE);
+		}
 		if (ft_strncmp(line, p->argv[LIM], ft_strlen(p->argv[LIM])) == 0)
 		{
 			free(line);
