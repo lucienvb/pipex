@@ -27,11 +27,10 @@ static void	put_err_msg(char *msg, char *sys_err_msg)
 	ft_putchar_fd('\n', STDERR_FILENO);
 }
 
-void	error_message(char *message, int errnum, t_pipe *p)
+void	error_message(char *message, int errnum)
 {
 	char	*sys_err_msg;
 
-	(void)p;
 	if (errnum == 127)
 		sys_err_msg = ft_strdup("command not found", 0);
 	else

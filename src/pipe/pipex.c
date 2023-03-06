@@ -38,8 +38,6 @@ int	pipex(t_pipe *p)
 	}
 	if (child != 0)
 		execute_parent_end(p, &status, &child);
-	if (p->no_infile)
-//		unlink(p->no_inf);
-		unlink("no_infile");
+	unlink("no_infile");
 	return (WEXITSTATUS(status));
 }
