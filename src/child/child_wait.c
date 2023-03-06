@@ -17,6 +17,7 @@ void	child_wait(t_pipe *p, pid_t *child, int *status)
 	size_t	i;
 
 	i = 0;
-	while (i < p->child_count)
-		waitpid(child[i++], status, 0);
+	while (i < (p->child_count - 1))
+		wait(&child[i++]);
+	waitpid(child[i], status, 0);
 }

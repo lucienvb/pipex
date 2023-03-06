@@ -38,13 +38,14 @@ typedef struct s_pipe
 	char	**path_list;
 	size_t	child_count;
 	size_t	cmd_index;
+	int		no_infile;
+//	char	*no_inf;
 	int		here_doc;
 	int		outfile;
 	int		infile;
 	char	**envp;
 	char	**argv;
 	char	*path;
-	int 	ex;
 }	t_pipe;
 
 // BONUS
@@ -63,7 +64,7 @@ void	error(void);
 void	error_handling_one_pipe(int argc);
 void	message_wrong_input(int bonus);
 //bool 	message_wrong_input_here_doc(void);
-void	error_message(char *message, int errnum);
+void	error_message(char *message, int errnum, t_pipe *p);
 
 // INITIALIZE
 void	initialize(t_pipe *data, int argc, char **argv, char **envp);

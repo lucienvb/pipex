@@ -21,10 +21,7 @@ int	pipex(t_pipe *p)
 	pid_t	child;
 
 	if (dup2(p->infile, STDIN_FILENO) == -1)
-	{
-		error_message("no such file or directory", 0);
-//		p->ex = 1;
-	}
+		exit(4);
 	close(p->infile);
 	child = 0;
 	status = 0;
@@ -41,7 +38,8 @@ int	pipex(t_pipe *p)
 	}
 	if (child != 0)
 		execute_parent_end(p, &status, &child);
-//	if (p->ex)
-//		exit(0);
+	if (p->no_infile)
+//		unlink(p->no_inf);
+		unlink("no_infile");
 	return (WEXITSTATUS(status));
 }

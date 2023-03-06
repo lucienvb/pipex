@@ -19,7 +19,7 @@ static void	set_outfile(t_pipe *p, int argc, char **argv)
 	else
 		p->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (p->outfile == -1 || p->outfile > FOPEN_MAX)
-		error_message(argv[argc - 1], 0);
+		error_message(argv[argc - 1], 0, p);
 }
 
 void	initialize_bonus(t_pipe *p, int argc, char **argv, char **envp)

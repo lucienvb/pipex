@@ -94,6 +94,8 @@ fclean: clean
 
 comp: all clean
 
+fully: bonus clean
+
 re: fclean all
 
 #=======================================#

@@ -50,7 +50,7 @@ char	**init_path_and_argv(t_pipe *p, char **new_argv)
 	{
 		cmd_path = access_to_index(p->path_list, new_argv[0]);
 		if (cmd_path == -1)
-			error_message(p->argv[p->cmd_index], 127);
+			error_message(p->argv[p->cmd_index], 127, p);
 		p->path = strjoin_three(p->path_list[cmd_path], "/", new_argv[0]);
 	}
 	if (p->cmd_index == FIRST_CMD && !p->here_doc)
