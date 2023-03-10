@@ -92,9 +92,9 @@ fclean: clean
 		rm -f $(NAME)
 		$(MAKE) -C ./libft fclean
 
-comp: fclean all clean
+comp: all clean
 
-full: fclean bonus clean
+full: bonus clean
 
 re: fclean all
 

@@ -49,13 +49,13 @@ typedef struct s_pipe
 // BONUS
 void	error_handling(int argc);
 int		here_doc(t_pipe *p);
-void	initialize_bonus(t_pipe *data, int argc, char **argv, char **envp);
+void	initialize_bonus(t_pipe *p, int argc, char **argv, char **envp);
 void	init_here_doc(t_pipe *p, int argc);
 
 // CHILD FUNCTIONS
-int		execute_child(t_pipe *pipe, int *pipe_fd);
+int		execute_child(t_pipe *p, int *fd);
 pid_t	child_create(pid_t pid);
-void	child_wait(t_pipe *pipe, pid_t *pid, int *status);
+void	child_wait(t_pipe *p, pid_t *pid, int *status);
 
 // FUNCTIONS
 void	error(void);
@@ -65,20 +65,20 @@ void	message_wrong_input(int bonus);
 void	error_message(char *message, int errnum);
 
 // INITIALIZE
-void	initialize(t_pipe *data, int argc, char **argv, char **envp);
-void	init_in_and_outfile(t_pipe *data, int *pipe_fd);
-char	**init_path_and_argv(t_pipe *data, char **new_argv);
+void	initialize(t_pipe *p, int argc, char **argv, char **envp);
+void	init_in_and_outfile(t_pipe *p, int *fd);
+char	**init_path_and_argv(t_pipe *p, char **new_argv);
 void	init_pipex(t_pipe *p, int argc, char **argv);
 void	init_path_list(t_pipe *p, char **envp);
 
 // PIPE FUNCTIONS
-int		pipex(t_pipe *data);
-void	pipe_create(int *pipe_fd);
-void	pipes_close(int *pipe_fd);
+int		pipex(t_pipe *p);
+void	pipe_create(int *fd);
+void	pipes_close(int *fd);
 
 // UTILS
 int		access_to_index(char **path, char *system_call);
-void	execute_parent(int *pipe_fd);
+void	execute_parent(int *fd);
 void	execute_parent_end(t_pipe *p, int *status, pid_t *child);
 char	**split_path(char **envp);
 char	*strjoin_three(char *s1, char *s2, char *s3);
