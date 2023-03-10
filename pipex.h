@@ -30,6 +30,8 @@
 # define FIRST_CMD 2
 # define FIRST_CMD_HD 3
 # define LIM 2
+# define PIPE_READ_INDEX 0
+# define PIPE_WRITE_INDEX 1
 
 // STRUCTURES
 typedef struct s_pipe
@@ -38,7 +40,7 @@ typedef struct s_pipe
 	char	**path_list;
 	size_t	child_count;
 	size_t	cmd_index;
-	int		here_doc;
+	size_t	here_doc;
 	int		outfile;
 	int		infile;
 	char	**envp;
@@ -54,7 +56,7 @@ void	init_here_doc(t_pipe *p, int argc);
 
 // CHILD FUNCTIONS
 int		execute_child(t_pipe *p, int *fd);
-pid_t	child_create(pid_t pid);
+pid_t	child_create(void);
 void	child_wait(t_pipe *p, pid_t *pid, int *status);
 
 // FUNCTIONS
@@ -74,7 +76,6 @@ void	init_path_list(t_pipe *p, char **envp);
 // PIPE FUNCTIONS
 int		pipex(t_pipe *p);
 void	pipe_create(int *fd);
-void	pipes_close(int *fd);
 
 // UTILS
 int		access_to_index(char **path, char *system_call);

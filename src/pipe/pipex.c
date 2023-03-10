@@ -29,7 +29,7 @@ int	pipex(t_pipe *p)
 	{
 		if (p->cmd_index != p->last_cmd_index)
 			pipe_create(fd);
-		child = child_create(child);
+		child = child_create();
 		if (child == 0)
 			execute_child(p, fd);
 		else if (child != 0 && p->cmd_index != p->last_cmd_index)

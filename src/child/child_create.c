@@ -12,8 +12,10 @@
 
 #include "pipex.h"
 
-pid_t	child_create(pid_t child)
+pid_t	child_create(void)
 {
+	pid_t	child;
+
 	child = fork();
 	if (child == -1)
 		error();
