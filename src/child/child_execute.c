@@ -22,7 +22,7 @@ static void	free_rem(char **new_argv, t_pipe *p)
 		free(p->path);
 }
 
-int	execute_child(t_pipe *p, int *fd)
+void	execute_child(t_pipe *p, int *fd)
 {
 	char	**new_argv;
 
@@ -34,6 +34,4 @@ int	execute_child(t_pipe *p, int *fd)
 		free_rem(new_argv, p);
 		error();
 	}
-	free_rem(new_argv, p);
-	return (0);
 }

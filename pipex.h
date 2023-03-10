@@ -55,7 +55,7 @@ void	initialize_bonus(t_pipe *p, int argc, char **argv, char **envp);
 void	init_here_doc(t_pipe *p, int argc);
 
 // CHILD FUNCTIONS
-int		execute_child(t_pipe *p, int *fd);
+void	execute_child(t_pipe *p, int *fd);
 pid_t	child_create(void);
 void	child_wait(t_pipe *p, pid_t *pid, int *status);
 

@@ -37,7 +37,7 @@ void	init_in_and_outfile(t_pipe *p, int *fd) {
 		init_to_outfile(p);
 }
 
-//// function that uses dup2 to write to the pipe
+// function that uses dup2 to write to the pipe
 //static void	init_to_pipe(int *fd)
 //{
 //	if (dup2(fd[PIPE_WRITE_INDEX], STDOUT_FILENO) == -1)
@@ -48,6 +48,7 @@ void	init_in_and_outfile(t_pipe *p, int *fd) {
 //// function that uses dup2 to write to the outfile
 //static void	init_to_outfile(t_pipe *p, int *fd)
 //{
+//	(void)fd;
 //	close(fd[PIPE_WRITE_INDEX]);
 //	if (dup2(p->outfile, STDOUT_FILENO) == -1)
 //		error();
@@ -56,7 +57,8 @@ void	init_in_and_outfile(t_pipe *p, int *fd) {
 //
 //static void	init_infile(t_pipe *p, int *fd)
 //{
-//	if (p->cmd_index == (FIRST_CMD + p->here_doc))
+////	if (p->cmd_index == (FIRST_CMD + p->here_doc))
+//	if (p->cmd_index == FIRST_CMD)
 //	{
 //		close(fd[PIPE_READ_INDEX]);
 //		if (dup2(p->infile, STDIN_FILENO) == -1)

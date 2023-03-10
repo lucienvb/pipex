@@ -22,7 +22,7 @@ int	here_doc(t_pipe *p)
 	pipe_create(fd);
 	while (1)
 	{
-		write(STDOUT_FILENO, "pipe heredoc> ", 2);
+		write(STDOUT_FILENO, "pipe heredoc> ", 14);
 		if (dup2(hd, STDIN_FILENO) == -1)
 			error_message("", 0);
 		line = get_next_line(hd);
