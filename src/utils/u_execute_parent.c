@@ -16,10 +16,10 @@
 // reads from the pipe and then closes the read end
 void	execute_parent(int *fd)
 {
-	close(fd[1]);
-	if (dup2(fd[0], STDIN_FILENO) == -1)
+	close(fd[PIPE_WRITE_INDEX]);
+	if (dup2(fd[PIPE_READ_INDEX], STDIN_FILENO) == -1)
 		error();
-	close(fd[0]);
+	close(fd[PIPE_READ_INDEX]);
 }
 
 // this function frees the path_list variable and waits for

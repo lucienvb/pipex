@@ -15,10 +15,10 @@
 // function that uses dup2 to write to the pipe
 static void	init_to_pipe(int *fd)
 {
-	close(fd[0]);
-	if (dup2(fd[1], STDOUT_FILENO) == -1)
+	close(fd[PIPE_READ_INDEX]);
+	if (dup2(fd[PIPE_WRITE_INDEX], STDOUT_FILENO) == -1)
 		error();
-	close(fd[1]);
+	close(fd[PIPE_WRITE_INDEX]);
 }
 
 // function that uses dup2 to write to the outfile
@@ -30,7 +30,14 @@ static void	init_to_outfile(t_pipe *p)
 }
 
 // function that initializes which location to write to
-void	init_in_and_outfile(t_pipe *p, int *fd) {
+void	init_in_and_outfile(t_pipe *p, int *fd)
+{
+//	if (p->cmd_index == FIRST_CMD + p->here_doc)
+//	{
+//		if (dup2(p->infile, STDIN_FILENO) == -1)
+//			exit(4);
+//		close(p->infile);
+//	}
 	if (p->cmd_index != p->last_cmd_index)
 		init_to_pipe(fd);
 	else
