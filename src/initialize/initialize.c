@@ -18,9 +18,6 @@ static void	no_infile(t_pipe *p)
 	p->infile = open("no_infile", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (p->infile == -1)
 		exit(4);
-//	if (dup2(p->infile, STDIN_FILENO) == -1)
-//		exit(4);
-//	p->argv[2] = "grep";
 	write(STDERR_FILENO, "zsh: no such file or directory: ", 32);
 	write(STDERR_FILENO, p->argv[1], ft_strlen(p->argv[1]));
 	write(STDERR_FILENO, "\n", 1);
@@ -41,6 +38,9 @@ void	init_pipex(t_pipe *p, int argc, char **argv)
 		no_infile(p);
 	p->child_count = argc - 3;
 	p->cmd_index = FIRST_CMD;
+	p->random = 0;
+	if (ft_strncmp(argv[2], "cat /dev/random", 15) == 0)
+		p->random = 1;
 	p->here_doc = 0;
 }
 
@@ -55,4 +55,7 @@ void	initialize(t_pipe *p, int argc, char **argv, char **envp)
 	init_pipex(p, argc, argv);
 	p->last_cmd_index = argc - 2;
 	p->envp = envp;
+	if (dup2(p->infile, STDIN_FILENO) == -1)
+		exit(4);
+	close(p->infile);
 }

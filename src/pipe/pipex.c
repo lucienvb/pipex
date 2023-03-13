@@ -17,17 +17,14 @@
 int	pipex(t_pipe *p)
 {
 	int		status;
-	int		fd[2];
 	pid_t	*child;
-	int 	i;
+	int		fd[2];
+	int		i;
 
 	child = malloc(p->child_count * sizeof(pid_t));
 	if (!child)
 		exit(EXIT_FAILURE);
 	i = 0;
-	if (dup2(p->infile, STDIN_FILENO) == -1)
-		exit(4);
-	close(p->infile);
 	status = 0;
 	while (p->cmd_index <= p->last_cmd_index)
 	{
@@ -36,16 +33,12 @@ int	pipex(t_pipe *p)
 		child[i] = child_create();
 		if (child[i] == 0)
 			execute_child(p, fd);
-		else if (child[i] != 0 && p->cmd_index != p->last_cmd_index)
+		else if (child[i] != 0 && p->cmd_index != p->last_cmd_index
+			&& !p->random)
 			execute_parent(fd);
 		i++;
 		p->cmd_index++;
 	}
-	close(fd[PIPE_READ_INDEX]);
-	close(fd[PIPE_WRITE_INDEX]);
-	if (child != 0)
-		execute_parent_end(p, &status, child);
-	unlink("no_infile");
-	free(child);
+	execute_parent_end(p, &status, child, fd);
 	return (WEXITSTATUS(status));
 }

@@ -44,9 +44,12 @@ typedef struct s_pipe
 	int		outfile;
 	int		infile;
 	char	**envp;
+	int		random;
 	char	**argv;
 	char	*path;
 }	t_pipe;
+
+void	init_random(t_pipe *p, int *fd);
 
 // BONUS
 void	error_handling(int argc);
@@ -80,7 +83,7 @@ void	pipe_create(int *fd);
 // UTILS
 int		access_to_index(char **path, char *system_call);
 void	execute_parent(int *fd);
-void	execute_parent_end(t_pipe *p, int *status, pid_t *child);
+void	execute_parent_end(t_pipe *p, int *status, pid_t *child, int *fd);
 char	**split_path(char **envp);
 char	*strjoin_three(char *s1, char *s2, char *s3);
 

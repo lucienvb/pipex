@@ -24,9 +24,16 @@ void	execute_parent(int *fd)
 
 // this function frees the path_list variable and waits for
 // the child processes and saves the status on the status address
-void	execute_parent_end(t_pipe *p, int *status, pid_t *child)
+void	execute_parent_end(t_pipe *p, int *status, pid_t *child, int *fd)
 {
+	if (p->random)
+	{
+		close(fd[PIPE_READ_INDEX]);
+		close(fd[PIPE_WRITE_INDEX]);
+	}
+	child_wait(p, child, status);
 	close(p->outfile);
 	remove_split(p->path_list);
-	child_wait(p, child, status);
+	unlink("no_infile");
+	free(child);
 }

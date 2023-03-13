@@ -33,4 +33,7 @@ void	initialize_bonus(t_pipe *p, int argc, char **argv, char **envp)
 		init_pipex(p, argc, argv);
 	p->last_cmd_index = argc - 2;
 	p->envp = envp;
+	if (dup2(p->infile, STDIN_FILENO) == -1)
+		exit(4);
+	close(p->infile);
 }

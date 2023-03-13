@@ -36,6 +36,7 @@ SRC_REG		:= \
 		src/pipe/pipe_create.c \
 		src/utils/u_access_to_index.c \
 		src/utils/u_execute_parent.c \
+		src/utils/u_random.c \
 		src/utils/u_split_path.c
 
 SRC_BONUS	:= \
@@ -52,6 +53,7 @@ SRC_BONUS	:= \
 		src/pipe/pipe_create.c \
 		src/utils/u_access_to_index.c \
 		src/utils/u_execute_parent.c \
+		src/utils/u_random.c \
 		src/utils/u_split_path.c \
 		src/bonus/error_handling_bonus.c \
 		src/bonus/here_doc_bonus.c \

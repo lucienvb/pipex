@@ -12,6 +12,17 @@
 
 #include "pipex.h"
 
+static void	exit_d_check(char *line, t_pipe *p)
+{
+	(void)p;
+	if (!line)
+	{
+		write(STDERR_FILENO, "\n", 1);
+		remove_split(p->path_list);
+		exit(EXIT_FAILURE);
+	}
+}
+
 int	here_doc(t_pipe *p)
 {
 	int		hd;
@@ -26,11 +37,7 @@ int	here_doc(t_pipe *p)
 		if (dup2(hd, STDIN_FILENO) == -1)
 			error_message("", 0);
 		line = get_next_line(hd);
-		if (!line)
-		{
-			write(STDERR_FILENO, "\n", 1);
-			exit(EXIT_FAILURE);
-		}
+		exit_d_check(line, p);
 		if (ft_strncmp(line, p->argv[LIM], ft_strlen(p->argv[LIM])) == 0)
 		{
 			free(line);
