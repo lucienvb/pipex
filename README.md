@@ -4,7 +4,7 @@ pipex is a command-line program written in C that handles pipes to redirect inpu
 
 ##
 
-**Installation**
+**Installation** <br/>
 To compile the pipex program, use the provided Makefile by running the following command in the terminal:
 make
 
@@ -13,7 +13,7 @@ make clean
 
 ##
 
-**Usage**
+**Usage** <br/>
 The pipex program is executed with the following format:
 ./pipex file1 cmd1 cmd2 file2
 
@@ -26,7 +26,7 @@ The behavior of pipex is identical to the shell command:
 
 ##
 
-**Examples**
+**Examples** <br/>
 Here are a couple of examples to illustrate the usage of pipex:
 
 $ ./pipex infile "ls -l" "wc -l" outfile
