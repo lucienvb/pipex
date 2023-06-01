@@ -3,12 +3,14 @@
 pipex is a command-line program written in C that handles pipes to redirect input and output between shell commands. It allows the user to execute a series of shell commands with their parameters and redirect the input from a file and output to another file.
 
 
+
 **Installation**
 To compile the pipex program, use the provided Makefile by running the following command in the terminal:
 make
 
 This will generate the executable file named pipex. If you want to remove the object files and the executable, you can run:
 make clean
+
 
 
 **Usage**
@@ -21,6 +23,7 @@ Where:
 
 The behavior of pipex is identical to the shell command:
 < file1 cmd1 | cmd2 > file2
+
 
 
 **Examples**
